@@ -26,3 +26,8 @@ Probably the most mysterious thing to learn. I should have written my own percep
 - [Long Intro to Docker](https://www.youtube.com/watch?v=fqMOX6JJhGo)
 
 *The second video, has also some helpful [exercises](https://kodekloud.com/p/docker-labs) to do, you may check it out.*
+
+## Node.js
+Things are getting more serious and challenges are starting. I am not still sure about which aspects of Node you should know, but anyway I recomend these videos for now. I may change them when I get to know the system better.
+- [Node with Brad](https://www.youtube.com/watch?v=U8XF6AFGqlc)
+- [Node with Dan](https://www.youtube.com/watch?v=wxbQP1LMZsw&list=PLRqwX-V7Uu6YxDKpFzf_2D84p0cyk4T7X&t=0s)
