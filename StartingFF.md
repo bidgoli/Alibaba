@@ -6,7 +6,7 @@ Let me list the topics you need to know to fit more easily in your role.
 - [Dropbox](#Dropbox)
 - [Shell Scripting](#Shell_Scripting)
 - [Docker](#Docker)
-- Node.js
+- [Node.js](#Node.js)
 
 ## Linux
 You should have installed a distribution of Linux, preferably Ubuntu. You may also use a virtual machine on Windows, for example [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
