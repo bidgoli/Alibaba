@@ -16,6 +16,6 @@ Anyway, you need to know at least the basics of linux. You may watch this starte
 ## Dropbox
 You should also install Dropbox desktop on your computer to sync your files with others. It can be done either in Windows or Linux.
 
-## Shell%20Scripting
+## Shell Scripting
 It is useful to be able to read a Bash code. As a warning, I should emphasis that it is the ugliest programming language without ANY dispute. Brad has also a decent video about it.
 - [Shell Scripting Intro](https://www.youtube.com/watch?v=v-F3YLd6oMw)
