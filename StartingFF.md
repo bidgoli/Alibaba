@@ -22,5 +22,7 @@ It is useful to be able to read a Bash code. As a warning, I should emphasis tha
 
 ## Docker
 Probably the most mysterious thing to learn. I should have written my own perception about it, I will do it someday, but for now I just refer you to two nice videos. A short and a long introduction to Docker.
-- [Short](https://www.youtube.com/watch?v=JprTjTViaEA)
-- [Long](https://www.youtube.com/watch?v=fqMOX6JJhGo)
+- [Short Intro to Docker](https://www.youtube.com/watch?v=JprTjTViaEA)
+- [Long Intro to Docker](https://www.youtube.com/watch?v=fqMOX6JJhGo)
+
+*The second video, has also some helpful [exercises](https://kodekloud.com/p/docker-labs) to do, you may check it out.*
