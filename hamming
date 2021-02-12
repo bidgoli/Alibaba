@@ -2,8 +2,17 @@
 
 
 
+
 For any  integers  $n\geqslant1$ and $r\geqslant0$, it is clear  that $m(K_n, r)=\min\{n, r\}$.
-In this section, we deal with the first nontrivial case, that is,  the Hamming graph of dimension $2$. We     derive an exact formula for $m(K_n^2,r)$. If $n\leqslant\ceil{r/2}$, then   the degree of  any vertex of  $K_n^2$ is    $2n-2\leqslant r-1$. This implies  that no vertex of      $K_n^2$  can be activated by other vertices in the $r$-neighbor bootstrap percolation process. Therefore, any percolating set of      $K_n^2$  consists of all vertices,   meaning   that   $m(K_n^2, r)=n^2$. The following theorem resolves the remaining cases.
+In this section, we deal with the first nontrivial case, that is,  the Hamming graph of dimension $2$. More precisely, we derive an exact formula for $m(K_n^2, r)$. However, it is not easy to provide an exact formula for
+the same problem for higher dimensions which will be  investigated  in the subsequent  sections.
+The result of this section will be    the basis  of  an inductive proof for higher dimensions in Section \ref{sec4}.
+
+
+
+If $n\leqslant\ceil{r/2}$, then   the degree of  any vertex of  $K_n^2$ is    $2n-2\leqslant r-1$. This implies
+that no vertex of      $K_n^2$  can be activated by other vertices in the $r$-neighbor bootstrap percolation process.
+Therefore, any percolating set of      $K_n^2$  consists of all vertices,   meaning   that   $m(K_n^2, r)=n^2$. The following theorem resolves the remaining cases.
 
 
 
@@ -21,18 +30,18 @@ Let
 V_{n, r}=\left\{(x, y)\in[\![n]\!]^2  \,     \Big| \, x+(n-1-y)\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1  \,    \text{ or }  \,   (n-1-x)+y\leqslant\left\lfloor\tfrac{r}{2}\right\rfloor-1\right\}.
 \end{equation}
 As  an  example,   $V_{6, 5}$ is shown in Figure  \ref{f1f}.
-
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{h62.jpg}
-\caption{The set $V_{6, 5}$ is  outlined with   circles  drawn around  its elements.}\label{f1f}
+\includegraphics[width=0.3\textwidth]{h62xy.jpg}
+\caption{The set $V_{6, 5}$ is  outlined with   circles  drawn around  its elements. The  points' coordinates can be found  using    the  numbers written on the left and bottom margins.}\label{f1f}
 \end{figure}
-
-It is well known that the number of  solutions of   $x_1+\cdots+x_k<m$ for the  nonnegative integers $x_1, \ldots, x_k$  is ${{m+k-1}\choose{k}}$. As $n\geqslant\ceil{r/2}+1$, we have
-$$|V_{n, r}|={{\left\lceil\tfrac{r}{2}\right\rceil+1}\choose{2}}+{{\left\lfloor\tfrac{r}{2}\right\rfloor+1}\choose{2}}=\left\lfloor\frac{(r+1)^2}{4}\right\rfloor.$$
+Since  $n\geqslant\ceil{r/2}+1$, we have
+$$|V_{n, r}|=\sum_{i=1}^{\left\lceil\tfrac{r}{2}\right\rceil}i+\sum_{i=1}^{\left\lfloor\tfrac{r}{2}\right\rfloor}i
+={{\left\lceil\tfrac{r}{2}\right\rceil+1}\choose{2}}+{{\left\lfloor\tfrac{r}{2}\right\rfloor+1}\choose{2}}
+=\left\lfloor\frac{(r+1)^2}{4}\right\rfloor.$$
 Note that $V_{n, r}\cap[\![n-1]\!]^2=V_{n-1, r-2}$.
 We  prove   by induction on $r$ that  $V_{n, r}$  is a percolating set  in the $r$-neighbor bootstrap percolation  process  on $K_n^2$.   The statement is trivial for $r=0, 1$.
-Let  $r\geqslant2$ and assume that   the vertices in $V_{n, r}$ are  initially activated. The points on the lines $x=n-1$ and $y=n-1$  become activated   from top to bottom and from  right to left,   respectively.  Remove from $K_n^2$ all the vertices in the set
+Let  $r\geqslant2$ and assume that   the vertices in $V_{n, r}$ are  initially activated. The points on the lines $x=n-1$ and $y=n-1$  become consecutively activated   from top to bottom and from  right to left,   respectively.  Remove from $K_n^2$ all the vertices in the set
 $$L=\left\{(x,y)\in[\![n]\!]^2 \,  \Big| \, x=n-1 \,    \text{ or } \,  y=n-1\right\}$$ to get $K_{n-1}^2$.
 By   the induction hypothesis,   $V_{n-1, r-2}=V_{n, r}\cap[\![n-1]\!]^2$ is a percolating  set of  $K_{n-1}^2$   in the $(r-2)$-neighbor bootstrap percolation process.
 Since each vertex in  $[\![n-1]\!]^2$  has two additional active   neighbors in $L$,  we conclude  that $V_{n-1, r-2}\cup L$ is a percolating  set of  $K_n^2$
@@ -51,12 +60,17 @@ that $|A\cap[\![n-1]\!]^2|\geqslant\floor{(r-1)^2/4}$. Therefore,
 
 
 
-\section{A polynomial method}
+\section{Polynomials and bootstrap percolation}\label{sec3}
 
 
 
-Closely related to the $r$-neighbor bootstrap percolation    is the notion of graph bootstrap percolation which was introduced by Bollob\'as in 1968 under the name of `weak saturation' \cite{bollobas68} and was later studied
-in 2012 by  Balogh,     Bollob\'as     and   Morris \cite{balogh12}. We recall  the formal definition.
+The main  result of this section  is an exact formula for a quantity that gives rise to a lower
+bound for $m(K_n^d, r)$. We use a polynomial technique  introduced by Hambardzumyan,   Hatami and  Qian  \cite{ham}
+to  determine   $m(K_2^d, r)$. This quantity is the minimum size of a percolating set
+in another version of bootstrap percolation which is  called `graph bootstrap percolation' and is
+closely related to the $r$-neighbor bootstrap percolation. The   notion of graph bootstrap
+percolation     was introduced by Bollob\'as in 1968 under the name of `weak saturation' \cite{bol} and was later studied
+in 2012 by  Balogh,     Bollob\'as     and   Morris \cite{bal}. We recall  the formal definition here.
 Given two  graphs $G$ and $H$, the  $H$-{\sl bootstrap percolation process} on $G$  begins with a   subset  $E_0$ of $E(G)$ whose elements are initially activated   and then,   at   step $i$ of the process,    the set  of active  edges   is
 $$E_i=E_{i-1}\cup\left\{
 e\in E(G) \, \left| \,
@@ -67,44 +81,51 @@ e\in E(G) \, \left| \,
    \end{array}
     \right.
 \right\}$$
-for each    $i\geqslant1$. The  set $E_0$  is called    a {\sl percolating set} of  $G$  provided   $\bigcup_{i\geqslant0}E_i=E(G)$.  The minimum size of a percolating  set in the $H$-bootstrap percolation  process  on $G$ is said to be  the {\sl weak saturation number} of $H$ in $G$ and is denoted by $\text{\sl wsat}(G, H)$. For simplicity  and following  \cite{hatami20}, we let
-$m_e(G, r)=\text{\sl wsat}(G, S_{r+1})$,  where $S_{r+1}$ is the star graph   on  $r+2$ vertices. We know from  \cite{noel18} that
+for each    $i\geqslant1$. The  set $E_0$  is called    a {\sl percolating set} of  $G$  provided   $\bigcup_{i\geqslant0}E_i=E(G)$.  The minimum size of a percolating  set in the $H$-bootstrap percolation  process  on $G$ is said to be  the {\sl weak saturation number} of $H$ in $G$ and is denoted by $\text{\sl wsat}(G, H)$.
+We refer to the  $S_{r+1}$-bootstrap percolation as  the $r$-{\sl edge bootstrap percolation}, where  $S_{r+1}$ denotes  the star graph   with   $r+1$ edges.
+For simplicity  and following  \cite{ham}, we let
+$m_e(G, r)=\text{\sl wsat}(G, S_{r+1})$.
+Roughly speaking, the $r$-edge bootstrap percolation can be considered   as an edge    analogue   of   the $r$-neighbor bootstrap percolation.
+It is worth to mention that $2$-edge bootstrap percolation  had been studied in   1984  by Lenormand and Zarcone under the name of `bond percolation' \cite{len}.
+We know from  \cite{mor} that
 \begin{equation}\label{mem}m_e(G, r)\leqslant rm(G, r).\end{equation}
-Using this inequality and by  computing $m_e(K_n^d, r)$ in the current  section,  we will present    a lower bound on $m(K_n^d, r)$  in the next  section.  We first recall the following definition from  \cite{hatami20}.
+Using this inequality and by  computing $m_e(K_n^d, r)$ in the current  section,  we will present    a lower bound on $m(K_n^d, r)$  in the next  section.  We first state  the following definition which slightly differs from the original definition in \cite{ham}.
 
 
 
 \begin{definition}\label{defhh}
-Let $r$ be a positive  integer and   let   $G$  be a graph equipped  with a  proper edge coloring   $c: E(G)\longrightarrow\mathbbmsl{R}$. Let $W_c(G, r)$ be the vector space over $\mathbbmsl{R}$ consisting of all
+Let $r$ be a nonnegative   integer and   let   $G$  be a graph equipped  with a  proper edge coloring   $c: E(G)\longrightarrow\mathbbmsl{R}$. Let $W_c(G, r)$ be the vector space over $\mathbbmsl{R}$ consisting of all
 functions $\phi : E(G)\longrightarrow\mathbbmsl{R}$ for   which there exist  polynomials $\{P_v(x)\}_{v\in V(G)}$ satisfying
 \begin{itemize}
 \item[{\rm (i)}] $\deg P_v(x)\leqslant r-1$ for any vertex  $v\in V(G)$;
 \item[{\rm (ii)}]  $P_u(c(uv))=P_v(c(uv))=\phi(uv)$ for each edge $uv\in E(G)$.
 \end{itemize}
-It is said that the polynomials  $\big\{P_v(x)\big\}_{v\in V(G)}$ {\sl recognize} $\phi$.
+It is said that the polynomials  $\big\{P_v(x)\big\}_{v\in V(G)}$ {\sl recognize} $\phi$. Notice that we adopt the convention that the degree of the zero polynomial is   $-1$.
 \end{definition}
 
 
 
-The following theorem  provides an interesting  linear algebraic lower bound on $m_e(G, r)$.  Other surprising applications of vector spaces and polynomials    for bootstrap percolation can be found in \cite{balister18, linear12, noel18}.  The  method  presented in  the following theorem      can be regarded as a special case of   a general framework introduced in   \cite{linear12}.
+The following theorem  provides an interesting  linear algebraic lower bound on $m_e(G, r)$.
+Other surprising applications of vector spaces and polynomials    for bootstrap percolation can be found in \cite{balister, linear, mor}.  The  method  presented in  the following theorem      can be regarded as a special case of   a general framework introduced in   \cite{linear}.
 
 
 
-\begin{theorem}[Hambardzumyan,   Hatami,     Qian \cite{hatami20}]\label{hh}
-Let  $r$ be a positive  integer  and let $c : E(G) \longrightarrow\mathbbmsl{R}$ be a proper edge coloring of a graph $G$. Then $m_e(G, r)\geqslant\dim W_c(G, r)$.
+\begin{theorem}[Hambardzumyan,   Hatami,     Qian \cite{ham}]\label{hh}
+Let  $r$ be a nonnegative   integer  and let $c : E(G) \longrightarrow\mathbbmsl{R}$ be a proper edge coloring of a graph $G$. Then $m_e(G, r)\geqslant\dim W_c(G, r)$.
 \end{theorem}
-
-
 
 
 To have a sense on  how the dimension of the vector space  $W_c(G, r)$ is related to $m_e(G, r)$,  one may consider a percolating set $E_0\subseteq E(G)$ and observe the fact that  if a  function  $\phi\in W_c(G, r)$ vanishes on $E_0$, then    $\phi=0$. This fact  forces that $\dim W_c(G, r)\leqslant|E_0|$ by considering $W_c(G, r)$ as a subspace of the space of all arbitrary functions from  $E(G)$ to $\mathbbmsl{R}$.
 To observe  the fact, note that throughout the process,  for the newly  activated edge $e\notin E_0$, at least one of the endpoints of $e$, say $v$, is incident to at least $r$  already activated edges. This shows that the  polynomial $P_v$ has at least $r$  distinct roots,   implying  $P_v=0$ and thus     $\phi(e)=0$. Since $E_0$ is a percolating set of  $G$,  $\phi$ eventually vanishes on $E(G)$ which means that $\phi=0$.
 
 
+The rest of this section  is dedicated to first find an appropriate proper edge coloring of $K_n$ for which $\dim W_c(K_n, r)$ attains its maximum value   which turns out to be equal to $m_e(K_n, r)={{r+1}\choose{2}}$. Although  the latter equality can be proved by a simple combinatorial argument, our approach  using the above mentioned polynomial technique  has the advantage  that we can extend the argument to higher dimensions afterward. So,  the next step will be introducing a proper     edge coloring of   $K_n^d$ and calculating   $\dim W_c(K_n, r)$. Doing this,  we will have a lower bound on $m_e(K_n^d, r)$ which we will show that it is  an  upper bound as well.
 
 
-The rest of this section  is dedicated to first find an appropriate proper edge coloring of $K_n$ for which $\dim W_c(K_n, r)$ attains its maximum value   which turns out to be equal to $m_e(K_n, r)={{r+1}\choose{2}}$. Notice that the latter equality can be proved by a simple combinatorial argument. However, our approach  using the polynomial method has the advantage  that we can extend the argument to higher dimensions afterward. So,  the next step will be introducing a proper     edge coloring of   $K_n^d$ and calculating   $\dim W_c(K_n, r)$. Doing this,  we will have a lower bound on $m_e(K_n^d, r)$ which we will show that it is  an  upper bound as well.
-
+Before proceeding, let us   present here   a  direct  combinatorial   proof for the equality $m_e(K_n, r)={{r+1}\choose{2}}$ for  $n\geqslant r+1$.
+As the  edges of a  clique of size  $r+1$ clearly forms a percolating  set in the $r$-edge bootstrap percolation  process  on   $K_n$, it is enough to prove that this number of edges is necessary. Suppose  that $v_1,  \ldots, v_n$ is an order of vertices of $K_n$ that will be incident to  at least $r$  active  edges during  the process.
+Obviously,  $v_1$ is incident to  at least $r$ initially active edges. The vertex $v_2$  needs to be incident to at least   $r-1$ new
+initially active edges. With the same argument, we conclude  that  any percolating  set is  necessarily   of size    at least $r+(r-1)+\cdots+1={{r+1}\choose{2}}$, as we aimed for.
 
 
 
@@ -116,7 +137,7 @@ $\dim W_c(K_n, r)\geqslant{{r+1}\choose{2}}$.
 
 
 \begin{proof}
-We introduce an edge coloring $c$ and $\binom{r+1}{2}$ independent vectors in $W_c(K_n,r)$.
+We introduce an edge coloring $c$ and $\binom{r+1}{2}$ independent vectors in $W_c(K_n, r)$.
 Fix  arbitrary distinct nonzero real numbers $\gamma_0, \gamma_1, \ldots, \gamma_{n-1}$ and let   $c(ij)=\gamma_i\gamma_j$ for any   edge $ij\in E(K_n)$. Obviously, $c: E(K_n)\longrightarrow\mathbbmsl{R}$  is a proper edge  coloring of $K_n$.
 For each   edge $uv\in E(K_n)$ with  $u, v\in[\![r+1]\!]$,   we define   polynomials $P^{uv}_0(x), P^{uv}_1(x), \ldots, P^{uv}_{n-1}(x)$  as follows.  For any  $i\in[\![n]\!]$, let
 $$P^{uv}_i(x)=\left\{\begin{array}{ll}
@@ -149,7 +170,7 @@ Note that  $\phi_{uv}$  vanishes    on each  edge $ij$ with    $i, j\in[\![r+1]\
 
 \begin{lemma}\label{car}
 Let   $n, r$ be    positive integers  and let  $c : E(G)\longrightarrow\mathbbmsl{R}$ be a proper edge coloring of a graph $G$.  Then, there is a proper edge  coloring $\widehat{c} : E(G\square K_n)\longrightarrow\mathbbmsl{R}$ such that $$\dim W_{\widehat{c}}\,(G\square K_n, r)\geqslant\sum_{t=0}^{n-1}\dim W_c(G, r-t),$$
-where $W_c(G, i)$ is defined  to be  $\{0\}$ if  $i\leqslant0$.
+where $W_c(G, i)$ is interpreted  as  $\{0\}$ if  $i<0$.
 \end{lemma}
 
 
@@ -169,8 +190,9 @@ as   $Q^{t,\phi}_u(x)=P^{\phi}_g(x)\mathnormal{\Gamma}^t_i(x),$ where
 Note that $\mathnormal{\Gamma}^t_i(\gamma_i\gamma_j)=\mathnormal{\Gamma}^t_j(\gamma_i\gamma_j)$ for all   $i$ and $j$. Also,    we know from Definition \ref{defhh} that  $P^{\phi}_g(c(gh))=P^{\phi}_h(c(gh))$ for each edge $gh\in E(G)$. Hence,     $Q^{t,\phi}_u$ and $Q^{t,\phi}_v$ have the same value on $\widehat{c}(uv)$  for any  edge  $uv\in E(G\square K_n)$. This implies that  $\{Q^{t,\phi}_u\}_{u\in V(G\square K_n)}$   recognize   a function $\mathnormal{\Psi}_{t,\phi}\in W_{\widehat{c}}(G\square K_n, r)$.
 
 
+
 Since we may choose  the pair  $(t, \phi)$ in $\sum_{t=0}^{n-1}\dim W_c(G, r-t)$ different ways,  it remains  to show that all functions $\mathnormal{\Psi}_{t,\phi}$ are linearly independent.
-Suppose  that $\sum_{t,\phi}\lambda_{t,\phi}\mathnormal{\Psi}_{t,\phi}=0$ for some scalars   $\lambda_{t,\phi}\in\mathbbmsl{R}$. Towards  a contradiction, assume   that $\tau$ is the smallest value such that $\lambda_{\tau,\phi}\neq0$ for some $\phi$.
+Suppose  that $\sum_{t,\phi}\lambda_{t,\phi}\mathnormal{\Psi}_{t,\phi}=0$ for some scalars   $\lambda_{t,\phi}\in\mathbbmsl{R}$. Towards  a contradiction, assume   that $\tau$ is the smallest number from $[\![n]\!]$  such that $\lambda_{\tau,\phi}\neq0$ for some $\phi$.
 If    $i<t$, then  $\gamma_i-\gamma_i$ appears in the expression of $\mathnormal{\Gamma}^t_i$ given in     \eqref{moz}  and so    $\mathnormal{\Gamma}^t_i=0$.
 This yields  that   $Q^{t,\phi}_{(g, \tau)}=0$ for any  integer   $t>\tau$ and   vertex $g\in V(G)$.  Thus, for any  two adjacent vertices   $u=(g, \tau)$ and $v=(h, \tau)$ in $G\square K_n$, we have   $$\sum_{t,\phi}\lambda_{t,\phi}\mathnormal{\Psi}_{t,\phi}(uv)=\sum_{t,\phi}\lambda_{t,\phi}Q^{t,\phi}_u\big(\widehat{c}(uv)\big)=
 \sum_{\phi\in \mathscr{B}_\tau}\lambda_{\tau,\phi}P^{\phi}_g\big(c(gh)\big)\mathnormal{\Gamma}^\tau_\tau\big(c(gh)\big)=0.$$ Our assumption on  $\gamma_0, \gamma_1, \ldots, \gamma_{n-1}$   implies that  $\mathnormal{\Gamma}^\tau_\tau(c(gh))\neq0$. Therefore,
@@ -179,10 +201,11 @@ $$\left(\sum_{\phi\in \mathscr{B}_\tau}\lambda_{\tau,\phi}\phi\right)(gh)=\sum_{
 
 
 
+
 \begin{lemma}\label{umeg}
 Let $n, r$ be    positive integers  and let  $G$ be a graph with all vertices of degree at least $r$.
 Then $$m_e(G\square K_n, r)\leqslant\sum_{t=0}^{n-1} m_e(G, r-t),$$
-where $m_e(G, i)$  is defined  to be  $0$ if  $i\leqslant0$.
+where $m_e(G, i)$  is interpreted as  $0$ if  $i<0$.
 \end{lemma}
 
 
@@ -190,7 +213,8 @@ where $m_e(G, i)$  is defined  to be  $0$ if  $i\leqslant0$.
 
 \begin{proof}
 For any $t$ with  $0 \leqslant t\leqslant \min\{r, n-1\}$, consider the    subgraph $G_t$  of $G\square K_n$ induced
-by  $\{(v, t)\in V(G\square K_n) \,     | \,    v\in V(G)\}$ which  is clearly  isomorphic to $G$.  Also, consider   a  percolating  set $U_t$  of the  minimum possible size in the $S_{r-t+1}$-bootstrap percolation  process  on $G_t$  and activate its elements. We show that the edges of $G_0,   \dots, G_{n-1}$ become activated  in the $S_{r+1}$-bootstrap percolation process consecutively. At first,  the edges of  $G_0$ become activated  in $S_{r+1}$-bootstrap percolation process, according to the definition of  $U_0$.  Let   $t\geqslant1$ and assume that the edges of  $G_0,  \ldots, G_{t-1}$ are activated. Since any  vertex  $(v, t)\in V(G_t)$ is  incident to $t$ active  edges with endpoints in $\{(v, i) \, | \, 0\leqslant i\leqslant t-1\}$, we conclude that the edges of $G_t$ become activated   in the $S_{r+1}$-bootstrap percolation process  on $G_t$ by  considering   $U_t$ as the set of initially activated vertices. Hence, $\bigcup_{t=0}^{n-1}U_t$ is a percolating set    of size $\sum_{t=0}^{n-1} m_e(G, r-t)$ in the $S_{r+1}$-bootstrap percolation process on $G\square H$.
+by  $\{(v, t)\in V(G\square K_n) \,     | \,    v\in V(G)\}$ which  is clearly  isomorphic to $G$.  Also, consider   a  percolating  set $U_t$  of the  minimum possible size in
+the  $(r-t)$-edge bootstrap percolation   process  on $G_t$  and activate its elements. We show that the edges of $G_0,   \dots, G_{n-1}$ become activated  in the $r$-edge bootstrap percolation process consecutively. At first,  the edges of  $G_0$ become activated  in the $r$-edge bootstrap percolation  process, according to the definition of  $U_0$.  Let   $t\geqslant1$ and assume that the edges of  $G_0,  \ldots, G_{t-1}$ are activated. Since any  vertex  $(v, t)\in V(G_t)$ is  incident to $t$ active  edges with endpoints in $\{(v, i) \, | \, 0\leqslant i\leqslant t-1\}$, we conclude that the edges of $G_t$ become activated   in the $r$-edge bootstrap percolation  process  on $G_t$ by  considering   $U_t$ as the set of initially activated vertices. Hence, $\bigcup_{t\geqslant0}U_t$ is a percolating set    of size $\sum_{t=0}^{n-1} m_e(G, r-t)$ in the $r$-edge bootstrap percolation  process on $G\square H$.
 \end{proof}
 
 
@@ -212,9 +236,9 @@ By     Lemma  \ref{car} and the induction  hypothesis, there is a proper edge co
 \end{align*}
 It follows from  Theorem \ref{hh} that   $m_e(K_n^d,r)\geqslant{{d+r}\choose{d+1}}$.
 Now, we establish  by induction  on $d$ that  $m_e(K_n^d,r)\leqslant{{d+r}\choose{d+1}}$.
-The edges of $K_n$  with two endpoints  in $[\![r+1]\!]$    clearly form  a percolating set  in the $S_{r+1}$-bootstrap percolation process on $K_n$ and so there is nothing to prove for  $d=1$.   By applying  Lemma \ref{umeg} and  the induction  hypothesis, we obtain  that
+The edges of $K_n$  with two endpoints  in $[\![r+1]\!]$    clearly form  a percolating set  in the $r$-edge bootstrap percolation  process on $K_n$ and so there is nothing to prove for  $d=1$.   By applying  Lemma \ref{umeg} and  the induction  hypothesis, we obtain  that
 \begin{align*}m_e\!\left(K_n^d, r\right)&\leqslant\sum_{t=0}^{n-1}m_e\!\left(K_n^{d-1}, r-t\right)\\&
-\leqslant\sum_{i=0}^{r-1}{{d-1+r-t}\choose{d}}\\&
+\leqslant\sum_{t=0}^{r-1}{{d-1+r-t}\choose{d}}\\&
 ={{d+r}\choose{d+1}}.
 \qedhere\end{align*}
 \end{proof}
@@ -222,11 +246,20 @@ The edges of $K_n$  with two endpoints  in $[\![r+1]\!]$    clearly form  a perc
 
 
 
-\section{Multi-dimensional Hamming graphs}
+\section{Multi-dimensional Hamming graphs}\label{sec4}
 
 
 
-Balister,    Bollob\'{a}s,    Lee   and   Narayanan   \cite{balister18}  gave    the  lower bound  $(r/d)^d$   and the  approximate upper bound  $r^d/(2d!)$ on $m(K_n^d, r)$. In this   section, we improve both bounds  which   result in   an asymptotic formula for $m(K_n^d, r)$.  To begin with,  let us fix the notation we shall use throughout this   section.  We set   $d\geqslant2$ and $\delta=(d-2)/(d-1)$.
+Balister,    Bollob\'{a}s,    Lee   and   Narayanan   \cite{balister}  gave    the  lower bound  $(r/d)^d$   and the    upper bound  $r^d/(2d!)$ on $m(K_n^d, r)$.
+Although  the   lower bound follows from    Theorem 2.3 of  \cite{balister},  the    upper   bound    is stated in   \cite{balister}   without a proof. In this   section, we improve both bounds  which   result in   an asymptotic formula for $m(K_n^d, r)$.
+Indeed, the previous section  paved the way
+to reach a drastic improvement in the lower bound. We use a    generalization of
+the construction given in Theorem  \ref{dim2} to  attain  the upper bound $r^d/(2d!)$, and then,
+in order to improve it, we carefully chop the corners of the   construction in such a way that it will still   remain   a percolating set.
+
+
+
+To begin with,  let us fix the notation we shall use throughout this   section.  We set   $d\geqslant2$ and $\delta=(d-2)/(d-1)$.
 For a point  $t=(t_1, \ldots, t_d)\in\{0, 1\}^d$  and a subset $P\subseteq[\![n]\!]^d$, we define
 \begin{equation}\label{pdef}
 P(t)=\left\{(x_1, \ldots, x_d)\in[\![n]\!]^d  \, \left| \,
@@ -238,26 +271,32 @@ P(t)=\left\{(x_1, \ldots, x_d)\in[\![n]\!]^d  \, \left| \,
 \right\}.
 \end{equation}
 Roughly speaking,  $P(t)$  is a region in  $[\![n]\!]^d$  congruent to $P$ around the point $(n-1)t$ instead of the origin.
-For the sets
+Let
 \begin{equation}\label{adef}
-A_{n, r}^d=\left\{(x_1,   \ldots, x_d)\in[\![n]\!]^d \, \,  \left| \, \,   \sum_{i=1}^d x_i\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1\right.\right\},
-\end{equation}
-\begin{equation}\label{bdef}
-B_{n, r}^d=\left\{(x_1,   \ldots, x_d)\in[\![n]\!]^d \, \, \left| \,  \, x_1+x_2+\delta\sum_{i=3}^d x_i<\delta\left(\left\lceil\tfrac{r}{2}\right\rceil-1\right)\right.\right\}
+A_{n, r}^d=\left\{(x_1,   \ldots, x_d)\in[\![n]\!]^d \, \,  \left| \, \,   \sum_{i=1}^d x_i\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1\right.\right\}
 \end{equation}
 and
-\begin{equation}\label{cdef}
-C_{n, r}^d=A_{n, r}^d\setminus B_{n, r}^d,
+\begin{equation}\label{bdef}
+B_{n, r}^d=\left\{(x_1,   \ldots, x_d)\in[\![n]\!]^d \, \, \left| \,  \, x_1+x_2+\delta\sum_{i=3}^d x_i<\delta\left(\left\lceil\tfrac{r}{2}\right\rceil-1\right)\right.\right\}.
 \end{equation}
-we  define
-$$\mathcal{A}_{n, r}^d=\bigcup_{t\in T^d}A_{n, r}^d(t), \, \, \mathcal{B}_{n, r}^d=\bigcup_{t\in T^d}B_{n, r}^d(t) \,   \text{ and }  \,   \mathcal{C}_{n, r}^d=\bigcup_{t\in T^d}C_{n, r}^d(t),$$
+Note that $B_{n, r}^d\subseteq A_{n, r}^d$   as $\delta<1$. Set
+\begin{equation}\label{cdef}
+C_{n, r}^d=A_{n, r}^d\setminus B_{n, r}^d.
+\end{equation}
+For the above  sets, we  define
+\begin{equation}\label{defcala}
+\mathcal{A}_{n, r}^d=\bigcup_{t\in T^d}A_{n, r}^d(t),
+\end{equation}
+$$\mathcal{B}_{n, r}^d=\bigcup_{t\in T^d}B_{n, r}^d(t)$$
+and
+$$\mathcal{C}_{n, r}^d=\bigcup_{t\in T^d}C_{n, r}^d(t),$$
 where
 $$T^d=\left\{(t_1, \ldots, t_d)\in \{0,1\}^d \, \Big| \,  t_1=t_2\right\}.$$
 As  an  instance,   $\mathcal{C}_{5, 4}^3$ is depicted  in Figure  \ref{3df}.
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{3d.jpg}
-\caption{The set  $\mathcal{C}_{5, 4}^3$ is  outlined with   circles  drawn around  its elements.}\label{3df}
+\includegraphics[width=0.6\textwidth]{3dxyz.jpg}
+\caption{The set  $\mathcal{C}_{5, 4}^3$ is  outlined with   circles  drawn around  its elements. The points $(0, 0, 0)$, $(0, 4, 0)$, $(4, 0, 4)$ and $(4, 4, 4)$ form the set  $\mathcal{B}_{5, 4}^3$. The  other    points' coordinates   can be found  using         these   points' coordinates.}\label{3df}
 \end{figure}
 Notice that all $A_{n, r}^d(t)$ are pairwise disjoint under the condition $n\geqslant r+1$.
 
@@ -277,14 +316,14 @@ We know from the proof of Theorem \ref{dim2} that the set $V_{n, r}$, given in \
 So,   the set
 $$\widehat{V}_{n, r}=\left\{(x_1, x_2)\in[\![n]\!]^2  \,     \Big| \, x_1+(n-1-x_2)\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1  \,    \text{ or }  \,   (n-1-x_1)+x_2\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1\right\}$$
 is also a percolating set  of  $K_n^2$  in the $r$-neighbor bootstrap percolation process.
-By  \eqref{pdef},
+Using  \eqref{pdef}, it is easy to check that
 $$\widehat{V}_{n, r}(0, 1)=\left\{(x_1, x_2)\in[\![n]\!]^2  \,    \left| \,
 \begin{array}{lll}
 x_1+x_2\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1 \text{ or} \\
 (n-1-x_1)+(n-1-x_2)\leqslant\left\lceil\tfrac{r}{2}\right\rceil-1
 \end{array}
-\right.\right\}=\mathcal{A}_{n, r}^2$$
-which shows  that  the assertion  is   true  for $d=2$.
+\right.\right\}$$
+which is in turn equal to $\mathcal{A}_{n, r}^2$ by  \eqref{defcala}. This shows  that  the assertion  is   true  for $d=2$.
 Let  $d\geqslant3$ and  assume that the assertion holds for $d-1$.
 Set   $P_i=\{(x_1, \ldots, x_d)\in[\![n]\!]^d  \,  | \,  x_d=i\}$ and $Q_i=P_i\cap\mathcal{A}_{n, r}^d$.
 We claim that, after  ignoring the last coordinate, both $Q_i$ and $Q_{n-1-i}$ are exactly $\mathcal{A}_{n, r-2i}^{d-1}$ for every   $i\in[\![s]\!]$.
@@ -399,7 +438,7 @@ We need the following theorem  in order to prove our result about the upper boun
 
 
 
-\begin{theorem}[Beged-Dov  \cite{bd72}]\label{bdthm}
+\begin{theorem}[Beged-Dov  \cite{bd}]\label{bdthm}
 Let $a_1, \ldots, a_k, b$  be positive   numbers satisfying   $b\geqslant\min\{a_1, \ldots, a_k\}$ and  let  $N$ be the number of  solutions of    $a_1x_1+\cdots+ a_kx_k\leqslant b$ for the  nonnegative integers $x_1, \ldots, x_k$. Then $$\frac{b^k}{k!a_1\cdots a_k}\leqslant N\leqslant\frac{(a_1+\cdots+a_k+b)^k}{k!a_1\cdots a_k}.$$
 \end{theorem}
 
@@ -436,8 +475,16 @@ In particular, if in addition $d\rightarrow \infty$, then $m(K_n^d, r)=\frac{1+o
 
 
 
-In the rest of this section, we try to find     the exact value of $m(K_n^d, r)$ for    small    $r$.
-It is trivial that  $m(K_n^d, 1)=1$. In  the following theorem, we determine   $m(K_n^d, 2)$ as  the first nontrivial case.
+\section{$\bmi{2}$-, $\bmi{3}$-neighbor bootstrap percolation  on  Hamming graphs}\label{sec5}
+
+
+
+In Section \ref{sec2}, we provided an exact formula for the special case   $m(K_n^2, r)$.
+Here, we focus on another type of interesting special cases and try to find the exact
+formula  for  $m(K_n^d, r)$ when $r$ is small. It is trivial that  $m(K_n^d, 1)=1$. In  the next    theorems, we   precisely determine   $m(K_n^d, 2)$ as  the first nontrivial case, and moreover,  we   use     a result  given in \cite{mor} to derive   a tighter  upper bound on  $m(K_n^d, 3)$.
+Finding an exact formula for  $m(K_n^d, 3)$   remains  an interesting open problem.
+
+
 Before proceeding, for $i=1, \ldots, d$,   let $e_i$ be the point   in $\{0, 1\}^d$   whose $i$th coordinate   is  $1$ and whose other coordinates are $0$.
 Recall that the {\sl weight} of a  tuple    is defined to be   the number of  its   nonzero entries.
 
@@ -453,36 +500,34 @@ Then $m(K_n^d, 2)=\ceil{d/2}+1$.
 
 \begin{proof}
 We may assume that $d\geqslant2$, since  the assertion is obviously  valid    for $d=1$.
-The inequality $m(K_n^d, 2)\geqslant\ceil{d/2}+1$  holds   by Lemma 2.4 of \cite{balogh10}  for   $n=2$ and by    Theorem \ref{akhar} for $n\geqslant3$. In order to finish   the proof, we present a percolating set  of  $K_n^d$ of size $\ceil{d/2}+1$ in   $2$-neighbor bootstrap percolation process. For this, let $o=(0, \ldots,   0)$ and define
+The inequality $m(K_n^d, 2)\geqslant\ceil{d/2}+1$  holds   by Lemma 2.4 of \cite{n=2}  for   $n=2$ and by    Theorem \ref{akhar} for $n\geqslant3$. In order to finish   the proof, we present a percolating set  of  $K_n^d$ of size $\ceil{d/2}+1$ in   $2$-neighbor bootstrap percolation process. For this, let $o=(0, \ldots,   0)$ and define
 $$S=\left\{\begin{array}{ll}
 T\cup\{o\},  &  \mbox{if $d$ is even};\\
 \vspace{-1mm}\\
 T\cup\{o, e_d\},  &   \mbox{if $d$ is odd},\end{array}\right.$$
 where
 $$T=\left\{e_{2i+1}+e_{2i+2}  \,      \Big| \,     i\in\left[\hspace{-1mm}\left[\left\lfloor\tfrac{d}{2}\right\rfloor\right]\hspace{-1mm}\right]\right\}.$$
-Assume that the vertices in $S$   are initially activated.  As the first step, the  vertices in  $\{e_1, \ldots, e_d\}\setminus S$  become  activated,   since each of them has exactly two neighbors  in $S$. Then,  by the percolation rule, all remaining  vertices of $K_n^d$ of  weight $1$ become  activated. After that,  the remaining  vertices  of $K_n^d$ of weights   $2,   \ldots, d$      become  respectively activated, since each vertex    of the weight  $w$       is adjacent to $w$ vertices of the weight  $w-1$.  Therefore,     $S$ is a percolating set  of  $K_n^d$   in   $2$-neighbor bootstrap percolation process. This completes the proof, since $|S|=\ceil{d/2}+1$.
+Assume that the vertices in $S$   are initially activated.  As the first step, the  vertices in  $\{e_1, \ldots, e_d\}\setminus S$  become  activated,   since each of them has exactly two neighbors  in $S$. Then,  by the percolation rule, all remaining  vertices of $K_n^d$ of  weight $1$ become  activated. After that,  the remaining  vertices  of $K_n^d$ of weights   $2,   \ldots, d$      become consecutively activated, since each vertex    of the weight  $w$       is adjacent to $w$ vertices of the weight  $w-1$.  Therefore,     $S$ is a percolating set  of  $K_n^d$   in   $2$-neighbor bootstrap percolation process. This completes the proof, since $|S|=\ceil{d/2}+1$.
 \end{proof}
 
 
 
-It is proven    in       \cite{noel18}  that  $m(K_2^d, 3)=\ceil{d(d+3)/6}+1$. Using this and Theorem \ref{akhar},  we  give lower and upper bounds on   $m(K_n^d, 3)$ below.
-
+It is proven    in       \cite{mor}  that  $m(K_2^d, 3)=\ceil{d(d+3)/6}+1$. Using this and Theorem \ref{akhar},  we  give lower and upper bounds on   $m(K_n^d, 3)$ below.
 
 
 
 \begin{theorem}\label{nem2in}
 Let $n, d$ be      positive integers  with $n\geqslant4$.
 Then
-$$\left\lceil\frac{d(d+5)}{6}\right\rceil+1\leqslant m(K_n^d, 3)\leqslant\left\lfloor\frac{(d+1)(d+5)}{6}\right\rfloor+1.$$
+$$\left\lceil\frac{d(d+5)}{6}\right\rceil+1\leqslant m(K_n^d, 3)\leqslant\left\lceil\frac{d(d+6)}{6}\right\rceil+1.$$
 \end{theorem}
 
 
 
-
 \begin{proof}
-The lower bound  obviously holds    for $d=1$  and  comes from Theorem \ref{akhar} for $d\geqslant2$. In order to  establish  the upper bound, it suffices to present a    percolating set  of  $K_n^d$ of size $\floor{(d+1)(d+5)/6}+1$ in   $3$-neighbor bootstrap percolation process. By  Theorem 1.4 of  \cite{noel18}, there is a subset $S\subseteq\{0, 1\}^d$ of size $\ceil{d(d+3)/6}+1$ such  that all vertices in $\{0, 1\}^d$ become activated in  $3$-neighbor bootstrap percolation process if the vertices in $S$ have been  initially activated. Let
+The lower bound  obviously holds    for $d=1$  and  comes from Theorem \ref{akhar} for $d\geqslant2$. In order to  establish  the upper bound, it suffices to present a    percolating set  of  $K_n^d$ of size $\ceil{d(d+6)/6}+1$ in   $3$-neighbor bootstrap percolation process. By  Theorem 1.4 of  \cite{mor}, there is a subset $S\subseteq\{0, 1\}^d$ of size $\ceil{d(d+3)/6}+1$ such  that all vertices in $\{0, 1\}^d$ become activated in  $3$-neighbor bootstrap percolation process if the vertices in $S$ have been  initially activated. Let
 $T=\{(n-1)(e_{2i+1}+e_{2i+2}) \,    | \,     i\in[\![\ceil{d/2}]\!]\}$, where it is assumed that   $e_{d+1}=e_1$.
-We have $$\left|S\cup T\right|=\left(\left\lceil\frac{d(d+3)}{6}\right\rceil+1\right)+\left\lceil\frac{d}{2}\right\rceil=\left\lfloor\frac{(d+1)(d+5)}{6}\right\rfloor+1.$$
+We have $$\left|S\cup T\right|=\left(\left\lceil\frac{d(d+3)}{6}\right\rceil+1\right)+\left\lceil\frac{d}{2}\right\rceil=\left\lceil\frac{d(d+6)}{6}\right\rceil+1.$$
 To end   the proof, we show that $S\cup T$ is  a percolating set  of  $K_n^d$   in   $3$-neighbor bootstrap percolation process. For this, assume that the vertices in $S\cup T$   are initially activated.
 According to  the selection of $S$, all vertices in $\{0, 1\}^d$ become activated.
 We know from the proof of Theorem \ref{dim2} that the set $V_{n, 3}$, given in \eqref{vdef},  is a percolating set  of  $K_n^2$  in the $3$-neighbor bootstrap percolation process.
@@ -491,20 +536,18 @@ $$W_i=\left\{xe_{2i+1}+ye_{2i+2}\in[\![n]\!]^d  \,    \Big| \, x+y\leqslant1  \,
 is  a  percolating set  of   the subgraph of $K_n^d$ induced by
 $\{xe_{2i+1}+ye_{2i+2}  \,      | \,     x, y\in[\![n]\!]\}$
 in   $3$-neighbor bootstrap percolation process.
-Since all $W_i$ are subsets of  $S\cup T$,  all   vertices of $K_n^d$ of weight $1$ have  become  activated. As a next step,  all  remaining  vertices of $K_n^d$   of the form $xe_i+e_j$  become  activated, since  $xe_i+e_j$  is adjacent  to the active vertices $xe_i$, $e_j$   and  $e_i+e_j$ if  $x\notin\{0, 1\}$. After that, all  remaining  vertices of $K_n^d$ of weight $2$   become  activated, since  $xe_i+ye_j$  is adjacent  to the active vertices $xe_i$, $ye_j$,  $xe_i+e_j$ and $e_i+ye_j$ provided  $x, y\notin\{0, 1\}$. Finally, all  remaining  vertices of $K_n^d$   of weights    $3,   \ldots, d$        become  respectively activated, since each vertex   of the weight  $w$    is adjacent to $w$ vertices of the weight    $w-1$. This shows  that  $S\cup T$ is  a percolating set  of  $K_n^d$   in   $3$-neighbor bootstrap percolation process, completing the proof.
+Since all $W_i$ are subsets of  $S\cup T$,  all   vertices of $K_n^d$ of weight $1$ have  become  activated. As a next step,  all  remaining  vertices of $K_n^d$   of the form $xe_i+e_j$  become  activated, since  $xe_i+e_j$  is adjacent  to the active vertices $xe_i$, $e_j$   and  $e_i+e_j$ if  $x\notin\{0, 1\}$. After that, all  remaining  vertices of $K_n^d$ of weight $2$   become  activated, since  $xe_i+ye_j$  is adjacent  to the active vertices $xe_i$, $ye_j$,  $xe_i+e_j$ and $e_i+ye_j$ provided  $x, y\notin\{0, 1\}$. Finally, all  remaining  vertices of $K_n^d$   of weights    $3,   \ldots, d$        become  consecutively  activated, since each vertex   of the weight  $w$    is adjacent to $w$ vertices of the weight    $w-1$. This shows  that  $S\cup T$ is  a percolating set  of  $K_n^d$   in   $3$-neighbor bootstrap percolation process, completing the proof.
 \end{proof}
 
 
 
 
-
-\section{Triangular graph}
-
+\section{Triangular graph}\label{sec6}
 
 
 
-One may think of $K_n^2$ as the line graph of $K_{n, n}$, the complete bipartite graph with equal parts of  size $n$. We determined $m(K_n^2,r)$ in Section \ref{sec2}.
-Inspired by this observation,  we  aim to compute   $m(L(K_n), r)$ in what follows.
+It is well known that   $K_n^2$ is isomorphic to  the line graph of $K_{n, n}$, the complete bipartite graph with equal parts of  size $n$. Since   $m(K_n^2, r)$ is determined   in Section \ref{sec2}, it is   natural to   look for   the same parameter  for the  line graph of  $K_n$.
+In this section, we  aim to compute   $m(L(K_n), r)$.
 Note that one  may view the activation of vertices in the $r$-neighbor bootstrap percolation process on $L(K_n)$  as the activation of edges of $K_n$.
 Therefore, by this correspondence,     in each round of   the $r$-neighbor bootstrap percolation   process  on $L(K_n)$,    an edge   $e\in E(K_n)$ becomes activated
 if the number of active  edges incident to  either of the endpoints of $e$ is at least $r$.
@@ -542,12 +585,12 @@ $$\varepsilon=\left\{\begin{array}{ll}
 \vspace{-1mm}\\
 0,  &    \mbox{if $r$ is odd}.\end{array}\right.$$
 For  instance,   $E_{8, 6}$, $E_{8, 7}$ and $E_{8, 8}$ are  depicted in Figure  \ref{dor}.
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{n8r678.jpg}
 \caption{From left to right, the edges of $K_8$ which are contained  in   $E_{8, 6}$, $E_{8, 7}$ or  $E_{8, 8}$.}\label{dor}
 \end{figure}
-We claim  that the activation  of $E_{n, r}$  leads to the activation of $E(K_n)$ in the    $r$-neighbor bootstrap percolation precoces on $L(K_n)$.
+We claim  that the activation  of $E_{n, r}$  leads to the activation of $E(K_n)$ in the    $r$-neighbor bootstrap percolation process  on $L(K_n)$.
 To prove   the claim,  we first show   that  $E_{n, r}\cap[\![n-1]\!]^2=E_{n-1, r-2}$.
 For  this, we note that
 \begin{align*}
@@ -593,7 +636,7 @@ It follows from \eqref{n-i} that    the number of edges in  $E_{n, r}$ incident 
 Therefore,  as the first step, the edge  with the endpoints   $n-1$ and  $n-2-\epsilon$ becomes activated.
 After that, the number of active edges incident to the vertex $n-1$ increases by $1$ and thus, as the second step,  the edge  with the endpoints   $n-1$ and  $n-3-\epsilon$ becomes activated by a similar reasoning. Repeating this argument,
 all edges incident to  $n-1$ become activated and  so we may remove the vertex $n-1$ from $K_n$  to use the induction hypothesis.
-Since each  edge   $(i, j)\in E(K_n)$  with $i, j\in[\![n-1]\!]$  is adjacent to the edges $(i, n-1)$ and $(j, n-1)$ in $L(K_n)$, we   may consider   the    $(r-2)$-neighbor bootstrap percolation precoces on $L(K_{n-1})$  with the  initially  activated  set   $E_{n, r}\cap[\![n-1]\!]^2=E_{n-1, r-2}$.
+Since each  edge   $(i, j)\in E(K_n)$  with $i, j\in[\![n-1]\!]$  is adjacent to the edges $(i, n-1)$ and $(j, n-1)$ in $L(K_n)$, we   may consider   the    $(r-2)$-neighbor bootstrap percolation    process  on $L(K_{n-1})$  with the  initially  activated  set   $E_{n, r}\cap[\![n-1]\!]^2=E_{n-1, r-2}$.
 Hence, the induction hypothesis   implies that the activation  of $E_{n-1, r-2}$  leads to the activation of $E(K_{n-1})$, proving   the claim.
 So,  we showed  that   $m(L(K_n), r)\leqslant\floor{(r+2)^2/8}$.
 
