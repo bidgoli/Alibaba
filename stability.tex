@@ -157,11 +157,11 @@ Let   $X$ be a   nonnegative  integer-valued       random variable. If   $\mathb
 
 
 
-
 \begin{theorem}[Chebyshev's inequality;  Inequality (1.2)  of  \cite{RG}]\label{chebyshev}
 Let   $X$ be a  random variable with the expected value    $\mathbbmsl{E}[X]$ and   the variance  $\mathbbmsl{Var}[X]$. Then,  for all  $t>0$,
 $$\mathbbmsl{P}\Big[\big|X-\mathbbmsl{E}[X]\big|\geq t\Big]\leq\frac{\mathbbmsl{Var}[X]}{t^2}.$$
 \end{theorem}
+
 
 
 \begin{corollary}\label{Second-Moment}
@@ -215,7 +215,7 @@ If $p\leq c_sq_s$, then   the property   $\mathcal{A}_s$ does not hold in $\math
 \begin{proof}
 Let $X_s$ be the number of $K_s$  in $\mathbbmsl{G}(n,p)$.
 If $p\leq\frac{1}{n\ln n}$, then    $e(\mathbbmsl{G}(n, p))<\frac{n}{\sqrt{\ln n}}$  whp  using  Theorem \ref{Markov}.  As  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\leq e(\mathbbmsl{G}(n, p))$, we get that $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\neq\mathrm{wsat}(K_n, K_s)$ whp.
-Now, let $\frac{1}{n\ln n}<p\ll n^{-2/(s+1)}$ and let $\varepsilon>0$ be a small constant. By Theorem \ref{chebyshev}, the number of edges of $\mathbbmsl{G}(n,p)$ belongs to $\left(\tfrac{n^2p}{2(1+\varepsilon)}, \frac{n^2p}{2(1-\varepsilon)}\right)$  whp,   since it has binomial distribution with parameters ${n\choose 2}$ and $p$. Consider an arbitrary increasing sequence $w_n=\omega(1)$ such that $(np^{(s+1)/2})^{s-2}w_n=o(1)$. Using  Theorem \ref{Markov},
+Now, let $\frac{1}{n\ln n}<p\ll n^{-2/(s+1)}$ and let $\varepsilon\in(0, 1)$ be a small constant. By Theorem \ref{chebyshev}, the number of edges of $\mathbbmsl{G}(n,p)$ belongs to $(\tfrac{n^2p}{2+2\varepsilon}, \tfrac{n^2p}{2-2\varepsilon})$  whp,   since it has binomial distribution with parameters ${n\choose 2}$ and $p$. Consider an arbitrary increasing sequence $w_n=\omega(1)$ such that $(np^{(s+1)/2})^{s-2}w_n=o(1)$. Using  Theorem \ref{Markov},
 $$\mathbbmsl{P}\left[X_s>\frac{n^2p}{w_n}\right]\leq\frac{\mathbbmsl{E}[X_s]}{\frac{n^2p}{w_n}}<\frac{n^sp^{s\choose 2}w_n}{n^2p}=\left(np^{\frac{s+1}{2}}\right)^{s-2}w_n\to0,$$
 implying that $X_s=o(n^2p)$ whp. Since $e(\mathbbmsl{G}(n, p))-X_s\leq\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\leq e(\mathbbmsl{G}(n, p))$, we get   that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=e(\mathbbmsl{G}(n, p))(1+o(1))$ whp. From this, we immediately deduce that   $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\neq\mathrm{wsat}(K_n, K_s)$ whp when  $p\ll n^{-2/(s+1)}$ and  $p\notin I$, where $$I=\left(\frac{2(1-\varepsilon)(s-2)}{n}, \frac{2(1+\varepsilon)(s-2)}{n}\right).$$
 
@@ -226,7 +226,7 @@ If  $s\geq4$ and $p\in I$, then  $X_s=0$ whp, since $p<2(1+\varepsilon)(s-2)/n$ 
 If $s=3$ and $p\in[\tfrac{2-2\varepsilon}{n}, \tfrac{2+2\varepsilon}{n}]$,  then $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)$ whp       equals the difference between the number of edges and the number of triangles. Note that whp all the triangles in $\mathbbmsl{G}(n, p)$ are disjoint,  since whp there are no subgraphs with at most $5$ vertices and at least two cycles  using   Theorem 3.4 of   \cite{RG}. The latter random variable is also not concentrated in a unit set. This is because the number of edges has the binomial distribution with parameters ${n\choose 2}$ and $p=\mathnormal{\Theta}(\tfrac{1}{n})$,  so
 it is outside any interval of length  $o(\sqrt{n})$ whp,  while the number of triangles is bounded from above by an asymptotically Poisson random variable.  For a constant nonnegative  integer  $L$, the property of having at most $L$ triangles is   decreasing,  implying that $\mathbbmsl{P}[X_3\leq L]$ is minimum when $p=\tfrac{2+2\varepsilon}{n}$. At the same time,  the number of  triangles in $\mathbbmsl{G}(n, \tfrac{2+2\varepsilon}{n})$ converges in distribution to
 a Poisson random variable with parameter $\tfrac{4}{3}(1+\varepsilon)^3$
-using    Lemma 1.10 and Theorem 3.19 of \cite{RG}. Thus,   for an arbitrary slowly increasing function $w_n=\omega(1)$,   $X_3<w_n$ whp.
+using    Lemma 1.10 and Theorem 3.19 of \cite{RG}. Thus,   for an arbitrary slowly increasing function $z_n=\omega(1)$,   $X_3<z_n$ whp.
 
 
 Summing up, for $p\ll n^{-2/(s+1)}$,   $\mathbbmsl{G}(n,p)$ does not have $\mathcal{A}_s$ whp.
@@ -582,5 +582,8 @@ Now, Part (ii)  of Lemma \ref{edge_in_clique}  follows from Corollary   \ref{Sec
 \end{proof}
 
 
-
 \end{document}
+
+
+
+
