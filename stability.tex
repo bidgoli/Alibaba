@@ -111,7 +111,7 @@ Given two graphs $G$ and $F$,  a spanning subgraph  $H$  of $G$  is  said to be 
 
 
 We denote by $\mathbbmsl{G}(n,p)$  the Erd\H{o}s--R\'{e}nyi  random graph on vertex set $[\![n]\!]=\{1,\ldots,n\}$ constructed by adding every edge $e\in\{xy \, | \, x, y\in [\![n]\!] \text{ and }  x\neq y\}$
-with probability    $p$  independently of all the others. Kor\'{a}ndi and   Sudakov    \cite{kor}  initiated  the study of  weak saturation numbers of random graphs. They   proved that, for every fixed real number  $p\in(0, 1)$ and integer  $s\geq 3$, $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=\mathrm{wsat}(K_n, K_s)$ with high probability (whp). Recall that the  notion `with high probability' is used whenever   an event  occurs in     $\mathbbmsl{G}(n,p)$  with a  probability approaching $1$ as $n\to\infty$. It was already known that    $\mathrm{wsat}(K_n, K_s)={s-2 \choose 2}+(s-2)(n-s+2)$ by a classic result proved by Lov\'{a}sz \cite{L77}.
+with probability    $p$  independently of all the others. Kor\'{a}ndi and   Sudakov    \cite{kor}  initiated  the study of  weak saturation numbers of random graphs. They   proved that, for every fixed real number  $p\in(0, 1)$ and integer  $s\geq 3$, $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=\mathrm{wsat}(K_n, K_s)$ with high probability. Recall that the  notion `with high probability', which is written as  `whp' for brevity,   is used whenever   an event  occurs in     $\mathbbmsl{G}(n,p)$  with a  probability approaching $1$ as $n\to\infty$. It was already known that    $\mathrm{wsat}(K_n, K_s)={s-2 \choose 2}+(s-2)(n-s+2)$ by a classic result proved by Lov\'{a}sz \cite{L77}.
 Other proofs of this result have been obtained by Frankl \cite{Frankl82}, Kalai \cite{Kalai84, Kalai85}, Alon \cite{Alon85}  and Yu \cite{Yu93}.
 Kor\'{a}ndi and Sudakov    \cite{kor} also     noticed that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=\mathrm{wsat}(K_n, K_s)$ whp when $p\geq n^{-\varepsilon}$ for small
 enough $\varepsilon> 0$ and asked about smaller $p$ and about possible  threshold probability for the
@@ -139,7 +139,23 @@ Furthermore, for  a subset $S$ of $V(G)$, we denote the induced subgraph of $G$ 
 We also use the standard asymptotic notation in the rest of the paper. For two real-valued functions $f(n)$ and $g(n)$, we write $f(n)=O(g(n))$ if there exists a constant $c>0$   such that $|f(n)|\leq cg(n)$ for every   large enough integer $n$. Also, we use the notation  $f(n)=o(g(n))$ if the same holds for any constant $c>0$.    We sometimes  write    $f(n)\ll g(n)$  and   $g(n)=\omega(f(n))$ instead of   $f(n)=o(g(n))$. Finally, we use the notation   $f(n)=\mathnormal{\Theta}(g(n))$ if both   $f(n)=O(g(n))$ and $g(n)=O(f(n))$  hold.
 
 
+
 In what follows, we   recall the  probabilistic inequalities that we make use of all in the  next sections.
+
+
+
+\begin{theorem}[Markov's inequality;  Inequality (1.3)  of  \cite{RG}]\label{Markov}
+Let   $X$ be a  nonnegative  random variable. Then,  for all  $t>0$,
+$$\mathbbmsl{P}[X\geq t]\leq\frac{\mathbbmsl{E}[X]}{t}.$$
+\end{theorem}
+
+
+
+\begin{corollary}\label{First-Moment}
+Let   $X$ be a   nonnegative  integer-valued       random variable. If   $\mathbbmsl{E}[X]=o(1)$, then $X=0$  whp.
+\end{corollary}
+
+
 
 
 \begin{theorem}[Chebyshev's inequality;  Inequality (1.2)  of  \cite{RG}]\label{chebyshev}
@@ -197,19 +213,22 @@ If $p\leq c_sq_s$, then   the property   $\mathcal{A}_s$ does not hold in $\math
 
 \begin{proof}
 We first show that, for $p\ll n^{-2/(s+1)}$,   $\mathbbmsl{G}(n,p)$ does not have $\mathcal{A}_s$ whp. Let $\varepsilon\in(0,1)$ be fixed. By   Theorem \ref{chebyshev}, the number of edges of $\mathbbmsl{G}(n,p)$ belongs to $(\tfrac{n^2p}{2+2\varepsilon},\tfrac{n^2p}{2-2\varepsilon})$  whp,   since it has binomial distribution with parameters ${n\choose 2}$ and $p$.
-Let $X_s$ be the number of $K_s$  in $\mathbbmsl{G}(n,p)$. If $p\ll n^{-2/(s+1)}$, then consider an arbitrary increasing sequence $w_n=\omega(1)$ such that $(np^{(s+1)/2})^{s-2}w_n=o(1)$. Then, by Markov's inequality, 
-$$
-{\sf P}\left(X_s>\frac{n^2p}{w_n}\right)\leq\frac{{\sf E}X_sw_n}{n^2p}<\frac{n^sp^{s(s-1)/2}w_n}{n^2p}=\left(np^{(s+1)/2}\right)^{s-2}w_n\to 0
-$$
-implying that $X_s=o(n^2p)$ whp. Since $e(\mathbbmsl{G}(n, p))-X_s\leq\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\leq e(\mathbbmsl{G}(n, p))$, we get that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=e(\mathbbmsl{G}(n, p))(1+o(1))$ whp. From this, we immediately get that   $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\neq\mathrm{wsat}(K_n, K_s)$ whp for $p\ll n^{-2/(s+1)}$ such that $p\notin\left(\tfrac{2(1-\varepsilon)(s-2)}{n},\tfrac{2(1+\varepsilon)(s-2)}{n}\right)$. 
+Let $X_s$ be the number of $K_s$  in $\mathbbmsl{G}(n,p)$. If $p\ll n^{-2/(s+1)}$, then we may  consider an arbitrary increasing sequence $w_n=\omega(1)$ such that $(np^{(s+1)/2})^{s-2}w_n=o(1)$. By Theorem \ref{Markov},
+$$\mathbbmsl{P}\left[X_s>\frac{n^2p}{w_n}\right]\leq\frac{\mathbbmsl{E}[X_s]}{\frac{n^2p}{w_n}}<\frac{n^sp^{s\choose 2}w_n}{n^2p}=\left(np^{\frac{s+1}{2}}\right)^{s-2}w_n\to 0,$$
+implying that $X_s=o(n^2p)$ whp. Since $e(\mathbbmsl{G}(n, p))-X_s\leq\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\leq e(\mathbbmsl{G}(n, p))$, we get   that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=e(\mathbbmsl{G}(n, p))(1+o(1))$ whp. From this, we immediately deduce  that   $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\neq\mathrm{wsat}(K_n, K_s)$ whp when  $p\ll n^{-2/(s+1)}$ and  $p\notin I$, where $$I=\left(\frac{2(1-\varepsilon)(s-2)}{n}, \frac{2(1+\varepsilon)(s-2)}{n}\right).$$
 
-For $s\geq 4$ and $p\in\left(\tfrac{2(1-\varepsilon)(s-2)}{n},\tfrac{2(1+\varepsilon)(s-2)}{n}\right)$,  $X_s=0$ whp (since $p$ is smaller than the threshold for appearance of $K_s$, see~\cite[Theorem 3.4]{RG}) and  therefore  the weak saturation number is exactly $e(\mathbbmsl{G}(n, p))$ that is not concentrated on a single value. 
 
-Finally, if $s=3$ and $p\in\left[\tfrac{2-2\varepsilon}{n}, \tfrac{2+2\varepsilon}{n}\right]$, then whp   the weak $K_s$-saturation number equals the difference between the number of edges and the number of triangles  (whp all the triangles in $\mathbbmsl{G}(n, p)$ are disjoint,  since whp there are no subgraphs with at most $5$ vertices and at least two cycles; see \cite[Theorem 3.4]{RG}). The latter random variable is also not concentrated in a unit set. This is because the number of edges has the binomial distribution with parameters ${n\choose 2}$ and $p=\mathnormal{\Theta}(\tfrac{1}{n})$ (so,
-for any interval of size $o(\sqrt{n})$ whp it is outside this interval) while the number of triangles is bounded from above by asymptotically Poisson random variable. Indeed, let $\eta$ be a Poisson random variable with parameter $\frac{4}{3}(1+\varepsilon)^3$. For a constant $L$, the property of having at most $L$ triangles is {\sl decreasing} \cite[Chapter 1.3]{RG} implying that ${\sf P}(X_3\leq L)$ is minimum when $p=\frac{2+2\varepsilon}{n}$. At the same time the number of  triangles in $\mathbbmsl{G}(n, \tfrac{2+2\varepsilon}{n})$ converges in distribution to $\eta$ (see Lemma 1.10 and Theorem 3.19 of \cite{RG}). Therefore, for arbitrary slowly increasing function $w_n=\omega(1)$, whp $X_3<w_n$.
+If  $s\geq4$ and $p\in I$, then  $X_s=0$ whp, since $p<2(1+\varepsilon)(s-2)/n$ and $n^{-2/(s-1)}$ is the threshold for appearance of $K_s$   by  Theorem 3.4 of   \cite{RG}. Hence,    the weak saturation number is exactly $e(\mathbbmsl{G}(n, p))$ that is not concentrated on a single value.
 
-Summing up, for $p\ll n^{-2/(s+1)}$,   $\mathbbmsl{G}(n,p)$ does not have $\mathcal{A}_s$ whp.\\
 
+
+If $s=3$ and $p\in[\tfrac{2-2\varepsilon}{n}, \tfrac{2+2\varepsilon}{n}]$,  then  whp   the weak $K_s$-saturation number    equals the difference between the number of edges and the number of triangles. Note that whp all the triangles in $\mathbbmsl{G}(n, p)$ are disjoint,  since whp there are no subgraphs with at most $5$ vertices and at least two cycles  using   Theorem 3.4 of   \cite{RG}. The latter random variable is also not concentrated in a unit set. This is because the number of edges has the binomial distribution with parameters ${n\choose 2}$ and $p=\mathnormal{\Theta}(\tfrac{1}{n})$,  so
+it is outside any interval of length  $o(\sqrt{n})$ whp,  while the number of triangles is bounded from above by an asymptotically Poisson random variable.  For a constant nonnegative  integer  $L$, the property of having at most $L$ triangles is   decreasing,  implying that $\mathbbmsl{P}[X_3\leq L]$ is minimum when $p=\tfrac{2+2\varepsilon}{n}$. At the same time,  the number of  triangles in $\mathbbmsl{G}(n, \tfrac{2+2\varepsilon}{n})$ converges in distribution to
+a Poisson random variable with parameter $\tfrac{4}{3}(1+\varepsilon)^3$
+using    Lemma 1.10 and Theorem 3.19 of \cite{RG}. Thus,   for an arbitrary slowly increasing function $w_n=\omega(1)$,   $X_3<w_n$ whp.
+
+
+Summing up, for $p\ll n^{-2/(s+1)}$,   $\mathbbmsl{G}(n,p)$ does not have $\mathcal{A}_s$ whp.
 Now, let $\gamma>0$ be fixed and small enough  and  let $p\geq n^{-2/(s+1)-\gamma}$. Also, denote  by $\mathcal{B}_s$ the property  that every edge belongs to some $K_s$. To continue  the proof, we need the following technical lemma about $\mathcal{B}_s$.
 
 
@@ -250,7 +269,7 @@ Finally, suppose  by contradiction that there exists a fixed    $\delta>0$ such 
 $c_sq_s(n)<p(n)\leq(1+\varepsilon)q^*_s(n)$ and $\mathbbmsl{P}[\mathbbmsl{G}(n, p)\in\mathcal{A}_s]\geq\delta$
 for  some fixed  $\varepsilon>0$ and for any $n$ belong to  an infinite  set $\mathnormal{\Lambda}$ of positive integers.  In the rest of the proof,    we always assume that $n\in\mathnormal{\Lambda}$.
 Consider an auxiliary function  $$\widecheck{p}(n)=c_sq_s(n)\left(1+\frac{1}{\sqrt{\ln n}\ln\ln n}\right)$$ and let $\widehat{p}(n)=(1+\varepsilon)q^*_s(n)$ for the sake of simplicity.  If $p<\widecheck{p}$, then $\mathbbmsl{G}(n,\widecheck{p})$ can be obtained from $\mathbbmsl{G}(n,p)$ by drawing every missing edge with probability $(\widecheck{p}-p)/(1-p)$. By the same arguments as given in Appendix \ref{appen},
-the probability that there exists an edge $xy$ in $\mathbbmsl{G}(n,\widecheck{p})\setminus \mathbbmsl{G}(n,p)$   such that   $N_{\mathbbmsl{G}(n,p)}(\{x, y\})$ does not contain  a clique of size   $s-2$   is at most
+the probability that there exists an edge $xy$ in $\mathbbmsl{G}(n,\widecheck{p})\setminus\mathbbmsl{G}(n,p)$   such that   $N_{\mathbbmsl{G}(n,p)}(\{x, y\})$ does not contain  a clique of size   $s-2$   is at most
 $${n\choose 2}\frac{\widecheck{p}-p}{1-p}\exp\left(-{n-2\choose s-2}\big(c_sq_s(n)\big)^{\frac{(s-2)(s+1)}{2}}+o(1)\right)=O\left(\frac{1}{\ln\ln n}\right).$$
 Therefore,
 $$\mathbbmsl{P}\big[\mathbbmsl{G}(n,\widecheck{p})\in\mathcal{A}_s\big]\geq\mathbbmsl{P}\big[\mathbbmsl{G}(n,p)\in\mathcal{A}_s\big]-O\left(\frac{1}{\ln\ln n}\right)\geq\delta-o(1).$$
@@ -272,8 +291,11 @@ a contradiction.
 In this section, we   present an  upper    bound on   the  threshold probability  for the property   $\mathcal{A}_s$. Let us first  recall the following definition.
 The {\sl $k$-th power}  of a graph  $\mathnormal{\Gamma}$, denoted by $\mathnormal{\Gamma}^k$,  is the graph  with    vertex set $V(\mathnormal{\Gamma})$  such that two vertices $x, y$ are adjacent in $\mathnormal{\Gamma}^k$ if and only if the distance between  $x, y$  in  $\mathnormal{\Gamma}$  is at most $k$. We need the following result on the threshold probability of the appearance of the $k$-th power of a Hamilton cycle.
 
-\begin{theorem}[\cite{kahn,posa,Riordan}]
-Let $\varepsilon>0$. If $p>(1+\varepsilon)\frac{\ln n}{n}$, then whp $G(n,p)$ contains a Hamilton cycle. For every $k\geq 2$, if $p\gg n^{-1/k}$, then whp $G(n,p)$ contains the $k$-th power of a Hamilton cycle.
+
+
+
+\begin{theorem}[\cite{posa, kahn, Riordan}]
+If   $p>c\tfrac{\ln n}{n}$ for a sufficiently large   constant  $c$,  then  $\mathbbmsl{G}(n,p)$ contains a Hamilton cycle whp. For every integer $k\geq 2$ and  $p\gg n^{-1/k}$, then $\mathbbmsl{G}(n,p)$ contains the $k$-th power of a Hamilton cycle whp.
 \label{th:Hamilton_powers}
 \end{theorem}
 
@@ -281,7 +303,7 @@ Let $\varepsilon>0$. If $p>(1+\varepsilon)\frac{\ln n}{n}$, then whp $G(n,p)$ co
 
 We  also  define  two graph properties to use later.
 We say     $\mathnormal{\Gamma}$ has the property {\sf EXT} if for every subset $S\subseteq V(\mathnormal{\Gamma})$  of size $s$, $N_\mathnormal{\Gamma}(S)$ contains a clique of size  $s-2$.
-Moreover, we say   $\mathnormal{\Gamma}$ has the property {\sf HAM} if for every subset $S\subseteq V(\mathnormal{\Gamma})$  of size $s-1$,  $\mathnormal{\Gamma}[N_\mathnormal{\Gamma}(S)]$ contains the $(s-2)$-th power of a Hamiltonian path.
+Moreover, we say   $\mathnormal{\Gamma}$ has the property {\sf HAM} if for every subset $S\subseteq V(\mathnormal{\Gamma})$  of size $s-1$,  $\mathnormal{\Gamma}[N_\mathnormal{\Gamma}(S)]$ contains the $(s-2)$-th power of a Hamilton path.
 
 
 
@@ -292,17 +314,17 @@ Let   $s\geq 3$   and     $n\geq s-2$. Assume that  both properties  {\sf EXT} a
 
 
 \begin{proof}
-If $n\in\{s-2, s-1\}$, then the  result is clearly valid.    Let $n\geq s$ and let $\mathnormal{\Omega}$ be a clique of size $s-2$  in $G$. We define a  spanning   subgraph $H$ of $G$ as follows.  The  graph  $H$ contains all edges of $G$ with endpoints in $\mathnormal{\Omega}$  and  also   all edges of $G$ with endpoints in both  $\mathnormal{\Omega}$ and $N_G(\mathnormal{\Omega})$. We still have to add to $H$  some other edges going outside $N_G[\mathnormal{\Omega}]$. For every $v\in V(G)\setminus N_G[\mathnormal{\Omega}]$, we add    $s-2$ edges of $G$ adjacent to $v$ described below.  Since $G$   satisfies    {\sf HAM},  the graph $H_v=G[N_G(\{v\}\cup\mathnormal{\Omega})]$ contains  the  $(s-2)$-th power of a Hamiltonian path. Starting from  a beginning vertex, denote the vertices of $H_v$ going in the natural order induced by the Hamiltonian path  by $x^v_1, \ldots, x^v_{h_v}$, where $h_v=|V(H_v)|$. We add the  edges $vx^v_1,  \ldots,  vx^v_{s-2}$ to $H$ for any $v\in V(G)\setminus N_G[\mathnormal{\Omega}]$. It is easy to see that $H$ is of size ${s-2 \choose 2}+(s-2)(n-s+2)$, so it suffices to prove that $H$ is a weakly $K_s$-saturated subgraph of  $G$.
+If $n\in\{s-2, s-1\}$, then the  result is clearly valid.    Let $n\geq s$ and let $\mathnormal{\Omega}$ be a clique of size $s-2$  in $G$. We define a  spanning   subgraph $H$ of $G$ as follows.  The  graph  $H$ contains all edges of $G$ with endpoints in $\mathnormal{\Omega}$  and  also   all edges of $G$ with endpoints in both  $\mathnormal{\Omega}$ and $N_G(\mathnormal{\Omega})$. We still have to add to $H$  some other edges going outside $N_G[\mathnormal{\Omega}]$. For every $v\in V(G)\setminus N_G[\mathnormal{\Omega}]$, we add    $s-2$ edges of $G$ adjacent to $v$ described below.  Since $G$   satisfies    {\sf HAM},  the graph $H_v=G[N_G(\{v\}\cup\mathnormal{\Omega})]$ contains  the  $(s-2)$-th power of a Hamilton path. Starting from  a beginning vertex, denote the vertices of $H_v$ going in the natural order induced by the Hamilton path  by $x^v_1, \ldots, x^v_{h_v}$, where $h_v=|V(H_v)|$. We add the  edges $vx^v_1,  \ldots,  vx^v_{s-2}$ to $H$ for any $v\in V(G)\setminus N_G[\mathnormal{\Omega}]$. It is easy to see that $H$ is of size ${s-2 \choose 2}+(s-2)(n-s+2)$, so it suffices to prove that $H$ is a weakly $K_s$-saturated subgraph of  $G$.
 
 
-First, all edges with endpoints in  $N_G(\mathnormal{\Omega})$ can be activated,  since they  belong to a  $K_s$ containing  $\mathnormal{\Omega}$. Next, for each $v \in V(G)\setminus N_G[\mathnormal{\Omega}]$, we may active  the edges $vx^v_{s-1},  \ldots, vx^v_{h_v}$ one by one,  since every such edge belongs to a $K_s$  containing the previous $s-2$ vertices of the $(s-2)$-th power of the Hamiltonian path. Finally, each edge $xy$ with endpoints in $V(G)\setminus N_G[\mathnormal{\Omega}]$ can be activated. To see this, note that    $N_G(\{x, y\}\cup\mathnormal{\Omega})$ contains a clique of size $s-2$,  say $\mathnormal{\Omega}_{xy}$, since  $G$   satisfies  {\sf EXT}.  It follows from   $\mathnormal{\Omega}_{xy}\subseteq N_G(\mathnormal{\Omega})$ that the edges  with endpoints in  $\mathnormal{\Omega}_{xy}$ are already activated   and  so $xy$ is the last edge of the  $\{x,y\}\cup\mathnormal{\Omega}_{xy}$ of size $s$ and   can be activated  as well.
+First, all edges with endpoints in  $N_G(\mathnormal{\Omega})$ can be activated,  since they  belong to a  $K_s$ containing  $\mathnormal{\Omega}$. Next, for each $v \in V(G)\setminus N_G[\mathnormal{\Omega}]$, we may active  the edges $vx^v_{s-1},  \ldots, vx^v_{h_v}$ one by one,  since every such edge belongs to a $K_s$  containing the previous $s-2$ vertices of the $(s-2)$-th power of the Hamilton path. Finally, each edge $xy$ with endpoints in $V(G)\setminus N_G[\mathnormal{\Omega}]$ can be activated. To see this, note that    $N_G(\{x, y\}\cup\mathnormal{\Omega})$ contains a clique of size $s-2$,  say $\mathnormal{\Omega}_{xy}$, since  $G$   satisfies  {\sf EXT}.  It follows from   $\mathnormal{\Omega}_{xy}\subseteq N_G(\mathnormal{\Omega})$ that the edges  with endpoints in  $\mathnormal{\Omega}_{xy}$ are already activated   and  so $xy$ is the last edge of the  $\{x,y\}\cup\mathnormal{\Omega}_{xy}$ of size $s$ and   can be activated  as well.
 \end{proof}
 
 
 
 
 \begin{lemma}\label{12}
-Let  $s\geq 3$ be  a fixed  integer and $p\geq n^{-1/(2s-3)}\ln n$. Then,  $$\mathbbmsl{P}[\text{$\mathbbmsl{G}(n, p)$  has both properties $\mathsf{EXT}$ and $\mathsf{HAM}$}]\to1$$ as $n\to\infty$.
+Let  $s\geq 3$ be  a fixed  integer and $p\geq n^{-1/(2s-3)}\ln n$. Then,  $$\mathbbmsl{P}\big[\text{$\mathbbmsl{G}(n, p)$  has both properties $\mathsf{EXT}$ and $\mathsf{HAM}$}\big]\to1$$ as $n\to\infty$.
 \end{lemma}
 
 
@@ -310,14 +332,14 @@ Let  $s\geq 3$ be  a fixed  integer and $p\geq n^{-1/(2s-3)}\ln n$. Then,  $$\ma
 \begin{proof}
 By Theorem 2 of \cite{SP90},  $\mathbbmsl{G}(n,p)$ has the property {\sf EXT} whp provided that    $$p\gg n^{-\frac{2}{3(s-1)}}(\ln n)^{\frac{2}{3(s-2)(s-1)}}.$$
 Therefore, if  $p\geq n^{-1/(2s-3)}\ln n$, then $\mathbbmsl{P}[\text{$\mathbbmsl{G}(n, p)$  has the  property $\mathsf{EXT}$}]\to1$ as $n\to\infty$.
-To explore the  behavior of  $\mathbbmsl{P}[\text{$\mathbbmsl{G}(n, p)$  has the  property $\mathsf{HAM}$}]$, we use the    fact that, for every   positive integers $k$ and $r$, if    $m$ is sufficiently large and  $q(m)\gg m^{-1/k}(\ln m)^2$,  then $\mathbbmsl{G}(m, q)$ contains the $k$-th power of a Hamiltonian path    with probability at least $1-m^{-r}$.
-To see  this fact, we apply Theorem~\ref{th:Hamilton_powers} and  conclude   that
-there exists a constant $C>0$ such that if $\widecheck{q}(m)>Cm^{-1/k}\ln m$, then $\mathbbmsl{G}(m, \widecheck{q})$ contains the $k$-th power of a Hamiltonian path   with probability at least $1-\tfrac{1}{e}$.
+To explore the  behavior of  $\mathbbmsl{P}[\text{$\mathbbmsl{G}(n, p)$  has the  property $\mathsf{HAM}$}]$, we use the    fact that, for every   positive integers $k$ and $r$, if    $m$ is sufficiently large and  $q(m)\gg m^{-1/k}(\ln m)^2$,  then $\mathbbmsl{G}(m, q)$ contains the $k$-th power of a Hamilton path    with probability at least $1-m^{-r}$.
+To see  this fact, we apply Theorem \ref{th:Hamilton_powers} and  conclude   that
+there exists a constant $C>0$ such that if $\widecheck{q}(m)>Cm^{-1/k}\ln m$, then $\mathbbmsl{G}(m, \widecheck{q})$ contains the $k$-th power of a Hamilton path   with probability at least $1-\tfrac{1}{e}$.
 To boost this probability to $1-m^{-r}$,  it suffices to apply    the coupling technique  by  taking  the union of $\lceil r\ln m\rceil$ independent copies of $\mathbbmsl{G}(m, \widecheck{q})$ on vertex set $[\![m]\!]$ and letting  $p={\lceil r\ln m\rceil}\widecheck{q}$.
 
 
 Fix $W\subseteq[\![n]\!]$ of size $s-1$ and set $m=np^{s-1}/2$. Using  Theorem \ref{chernoff},
-the probability that   $N_{\mathbbmsl{G}(n,p)}(W)$ does not contain the $(s-2)$-th power of a Hamiltonian path is at most
+the probability that   $N_{\mathbbmsl{G}(n,p)}(W)$ does not contain the $(s-2)$-th power of a Hamilton path is at most
 $$\mathbbmsl{P}\Big[\big|N_{\mathbbmsl{G}(n,p)}(W)\big|<m\Big]+m^{-3s}\mathbbmsl{P}\Big[\big|N_{\mathbbmsl{G}(n,p)}(W)\big|\geq m\Big]\leq\exp\left(-\frac{m}{4}\right)+n^{-s}\to 0$$ as $n\to 0$.
 Now, the result follows from the union bound theorem.
 \end{proof}
@@ -343,7 +365,11 @@ the result immediately  follows  from Lemmas \ref{11} and \ref{12}.
 
 
 \begin{remark}\label{rmrk}
-The power of  the logarithm  factor in Theorem \ref{th_upper} is not the best possible.  By Theorem~\ref{th:Hamilton_powers}, we may replace the factor $\ln n$ in Theorem \ref{th_upper} with $(\ln n)^{\xi}$, where $\xi=2/3$ for $s=3$ and $\xi=\frac{s-2}{2s-3}$ for every $s\geq 4$.
+The power of  the logarithm  factor in Theorem \ref{th_upper} is not the best possible.  By Theorem \ref{th:Hamilton_powers}, we may replace the factor $\ln n$ in Theorem \ref{th_upper} with $(\ln n)^{\xi}$, where
+$$\xi=\left\{\begin{array}{ll}
+\frac{2}{3}  &   \mbox{ if } s=3\mbox{,}\\\vspace{-3mm}\\
+\frac{s-2}{2s-3} &  \mbox{ if } s\geq 4\mbox{.}
+\end{array}\right.$$
 \end{remark}
 
 
@@ -352,13 +378,14 @@ The power of  the logarithm  factor in Theorem \ref{th_upper} is not the best po
 
 
 
-From the previous arguments, we know that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=e(\mathbbmsl{G}(n,p))(1+o(1))$ whp when $p(n)\ll n^{-2/(s+1)}$ and $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)={s-2\choose 2}+(s-2)(n-s+2)$  when $p(n)\geq n^{-1/(2s-3)}(\ln n)^{\xi}$ for    $\xi$  presented  in Remark \ref{rmrk}. In this section, we prove an upper bound for $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)$ for all the remaining values of $p$ (the trivial lower bound equals ${s-2\choose 2}+(s-2)(n-s+2)$ whp,  since $\mathbbmsl{G}(n,p)$ is weakly saturated in $K_n$ for those values of $p$ whp \cite{bal}).
+From the previous arguments, we know that  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)=e(\mathbbmsl{G}(n,p))(1+o(1))$ whp when $p(n)\ll n^{-2/(s+1)}$ and $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)={s-2\choose 2}+(s-2)(n-s+2)$  whp when $p(n)\geq n^{-1/(2s-3)}(\ln n)^{\xi}$ for    $\xi$   presented  in Remark \ref{rmrk}. In this section, we give  an upper bound on  $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)$ for all the remaining values of $p$. It worth to mention  that $\mathrm{wsat}(\mathbbmsl{G}(n, p), K_s)\geq{s-2\choose 2}+(s-2)(n-s+2)$ whp,  since $\mathbbmsl{G}(n,p)$ is a  weakly $K_s$-saturated subgraph of  $K_n$  whp  for those values of $p$ by Theorem 1 of \cite{bal}.
+
 
 
 \begin{theorem}\label{upperbd}
 Let  $s\geq 3$ be  a fixed  integer and let
 $$\gamma=\left\{\begin{array}{ll}
-1  &   \mbox{ if } s=3\mbox{,}\\
+1  &   \mbox{ if } s=3\mbox{,}\\\vspace{-3mm}\\
 0 &  \mbox{ if } s\geq 4\mbox{.}
 \end{array}\right.$$
 Also, let  $w_1, w_2, \ldots$ be a sequence of real numbers such that   $w_n\to\infty$ as $n\to\infty$. Then,      $$\mathrm{wsat}\big(\mathbbmsl{G}(n, p), K_s\big)\leq (s-2)n+\frac{w_n(\ln n)^{2(\gamma+s-2)}}{p^{2s-3}}$$ whp.
@@ -371,17 +398,17 @@ The result is immediate when     $p\leq((\ln n)^{\gamma+s-2}/n)^{1/(s-1)}$,   si
 $$\left(\frac{(\ln n)^{\gamma+s-2}}{n}\right)^{\frac{1}{s-1}}<p<n^{-\frac{1}{2s-3}}(\ln n)^\xi.$$
 Let $G$ be a graph and let  $X$ be a subset of  $V(G)$ having  two following properties:
 \begin{itemize}
-\item [(i)] For  any   vertex $u\in V(G)\setminus X$,     $G[N_G(u)\cap X]$  contains the  $(s-2)$-th power of a Hamiltonian path.
+\item [(i)] For  any   vertex $u\in V(G)\setminus X$,     $G[N_G(u)\cap X]$  contains the  $(s-2)$-th power of a Hamilton path.
 \item [(ii)] For every  two distinct vertices $v,w\in V(G)\setminus X$, $N_G(\{v, w\})\cap X$  contains a clique of size $s-2$.
 \end{itemize}
-According to  the property (i), for each    $u\in V(G)\setminus X$, we may   fix a     Hamiltonian  path  $P_u$  of  $G[N_G(u)\cap X]$ such that $P_u^{s-2}\subset G[N_G(u)\cap X]$.
+According to  the property (i), for each    $u\in V(G)\setminus X$, we may   fix a     Hamilton  path  $P_u$  of  $G[N_G(u)\cap X]$ such that $P_u^{s-2}\subset G[N_G(u)\cap X]$.
 Let	$H$ be a spanning subgraph of $G$ containing all edges with both endpoints in $X$ and also  all $(s-2)|V(G)\setminus X|$   edges in
 $$\left\{uv  \, \left| \,
 \begin{array}{ll}
-    \text{$u\in V(G)\setminus X$   and $v$    is one of  the    $s-2$ initial}\\
-    \text{vertices of $P_u$ starting from  a beginning   vertex}
-   \end{array}
-    \right.\right\}.$$
+\text{$u\in V(G)\setminus X$   and $v$    is one of  the    $s-2$ initial}\\
+\text{vertices of $P_u$ starting from  a beginning   vertex}
+\end{array}
+\right.\right\}.$$
 Let us show that $H$ is  a weakly $K_s$-saturated subgraph of  $G$.
 Note that all edges with both endpoints in $X$ are initially  activated.
 For each $u\in V(G)\setminus X$,
@@ -400,19 +427,19 @@ $\mathrm{wsat}(G, K_s)\leq e(G[X])+(s-2)|V(G)\setminus X|$.
 Let $G\sim\mathbbmsl{G}(n, p)$ and  let  $X=[\![m]\!]$, where $m=\lfloor(\ln n)^{\gamma+s-2}\sqrt{w_n}/p^{s-1}\rfloor$.   Since   $e(G[X])\leq m^2p$ whp, it remains to show that  the properties   (i) and (ii) hold  whp  for $G$ and our choice of $X$.
 
 
-By Theorem~\ref{th:Hamilton_powers}, we   conclude (applying the same coupling techniques as in the proof of Lemma~\ref{12})  that,   if    $\ell$ is sufficiently large and     $p\gg\ell^{-1/(s-2)}(\ln n)^{\gamma/(s-2)+1}$, then $\mathbbmsl{G}(n,p)[\ell]$ contains the $(s-2)$-th power of a Hamiltonian path with probability at least $1-o(\tfrac{1}{n})$. Given a vertex $v\in[\![n]\!]\setminus X$, with probability $o(\tfrac{1}{n})$, $v$ has  at most  $\lfloor(\ln n)^{\gamma+s-2}\sqrt[4]{w_n}/p^{s-2}\rfloor$ neighbors in $X$ using  Theorem \ref{chernoff}. This shows that  the property     (i) holds with
-high probability.
+
+By Theorem \ref{th:Hamilton_powers} and applying the same coupling technique  as in the proof of Lemma \ref{12},  we   conclude    that,   if    $\ell$ is sufficiently large and     $p\gg\ell^{-1/(s-2)}(\ln n)^{\gamma/(s-2)+1}$, then $\mathbbmsl{G}(n,p)[\ell]$ contains the $(s-2)$-th power of a Hamilton path with probability at least $1-o(\tfrac{1}{n})$. Given a vertex $v\in[\![n]\!]\setminus X$, with probability $o(\tfrac{1}{n})$, $v$ has  at most  $\lfloor(\ln n)^{\gamma+s-2}\sqrt[4]{w_n}/p^{s-2}\rfloor$ neighbors in $X$ using  Theorem \ref{chernoff}. This shows that  the property     (i) holds whp.
 
 
 Finally, using   Theorem \ref{Janson}, the probability that  there exist distinct  vertices  $v,w\in[\![n]\!]\setminus X$ such that $N_G(\{v, w\})\cap [\![\widetilde m]\!]$ does not   contain  a clique of size $s-2$   is at most
 $${n\choose 2}\exp\left(-{\widetilde m\choose s-2}p^{{s\choose 2}-1}+\sum_{t=1}^{s-3}{\widetilde m\choose s-2}{s-2\choose t}{\widetilde m-s+2\choose s-2-t}p^{(s-2)(s+1)-2t-{t\choose 2}}\right),$$ where $\widetilde{m}=\lfloor (\ln n)/p^{(s+1)/2}\rfloor$. The above term is at most
-$$\exp\left(2\ln n-\frac{1}{(s-2)!}\widetilde m^{s-2}p^{\frac{(s-2)(s+1)}{2}}\big(1-o(1)\big)\right)$$ which tends to $0$ as $n\to\infty$. Since $\widetilde{m}<m$,  the property  (ii) occurs  with
-high probability.
+$$\exp\left(2\ln n-\frac{1}{(s-2)!}\widetilde m^{s-2}p^{\frac{(s-2)(s+1)}{2}}\big(1-o(1)\big)\right)$$ which tends to $0$ as $n\to\infty$. Since $\widetilde{m}<m$,  the property  (ii) occurs  whp.
 \end{proof}
 
 
 
-\section*{Acknowledgment}
+
+\section*{Acknowledgments}
 
 
 Ali Mohammadian  is supported by the    Natural Science Foundation of Anhui Province  with  grant identifier 2008085MA03 and by the National Natural Science Foundation of China with  grant number 12171002.
@@ -441,15 +468,13 @@ The authors wish  to thank the anonymous referees for their valuable comments an
 
 \bibitem{RG} {\sc  S. Janson}, {\sc T. \L uczak} and {\sc A. Ruci\'{n}ski},  {\sl Random Graphs}, Wiley-Interscience Series in Discrete Mathematics and Optimization,  Wiley-Interscience, New York, 2000.
 
-\bibitem{kahn} {\sc J. Kahn}, {\sc B. Narayanan} and {\sc J. Park}, The threshold for the square of a Hamilton cycle, {\sl Proc. AMS} {\bf 149} (2021), 3201--3208.
+\bibitem{kahn} {\sc J. Kahn}, {\sc B. Narayanan} and {\sc J. Park}, The threshold for the square of a Hamilton cycle, {\sl Proc. Amer. Math. Soc.} {\bf 149} (2021), 3201--3208.
 
 \bibitem{Kalai85} {\sc  G. Kalai}, Hyperconnectivity of graphs,  {\sl Graphs Combin.}   {\bf 1} (1985), 65--79.
 
 \bibitem{Kalai84} {\sc  G. Kalai}, Weakly saturated graphs are rigid,  in: Convexity and graph theory (Jerusalem, 1981), North-Holland Math. Stud., 87, Ann. Discrete Math., 20, North-Holland, Amsterdam, 1984, pp.  189--190.
 
 \bibitem{kor} {\sc D. Kor\'{a}ndi} and {\sc B. Sudakov}, Saturation in random graphs, {\sl Random Structures  Algorithms}   {\bf 51} (2017),  169--181.
-
-%\bibitem{kuhn} {\sc D. K\"{u}hn}  and {\sc D. Osthus}, On P\'{o}sa’s conjecture for random graphs, {\sl SIAM J. Discrete Math.}  {\bf 26} (2012), 1440--1457.
 
 \bibitem{L77} {\sc L.  Lov\'{a}sz}, Flats in matroids and geometric graphs, in:  Combinatorial surveys (Proc. Sixth British Combinatorial Conf., Royal Holloway Coll., Egham, 1977),  Academic Press, London, 1977, pp. 45--86.
 
@@ -481,7 +506,7 @@ It could be that  Lemma \ref{edge_in_clique}  is a known result in the  literatu
 
 
 \begin{proof}[Proof of Lemma \ref{edge_in_clique}]
-By Theorem 2 of  \cite{SP90},  there exists a constant $C>0$ such that, if    $p\geq Cq_s$,   then  every pair of vertices of  $\mathbbmsl{G}(n,p)$     have  whp  $s-2$ common neighbors that induce a clique. Thus, we may assume that $w_n\leq C\ln n$.
+By Theorem 2 of  \cite{SP90},  there exists a constant $C>0$ such that, if    $p\geq Cq_s$,   then   every pair of vertices of  $\mathbbmsl{G}(n,p)$     have   whp  $s-2$ common neighbors that induce a clique. Thus, we may assume that $w_n\leq C\ln n$.
 
 
 Let $N_s$ be the number of edges of  $\mathbbmsl{G}(n,p)$   that do not belong to any $K_s$.
@@ -505,26 +530,26 @@ If $w_n\to\infty$, then
 \lambda&=\frac{n^{s-2}}{(s-2)!}\left(2\left(1-\frac{1}{s+1}\right)(s-2)!\right)n^{-(s-2)}\ln n\left(1+\frac{\ln\ln n}{s(s-2)\ln n}+\omega\left(\frac{1}{\ln n}\right)\right)
 \\&=2\left(1-\frac{1}{s+1}\right)\ln n+\frac{2\ln\ln n}{(s-2)(s+1)}+\omega(1).
 \end{align*}
-Therefore,
+Therefore, for any $s\geq3$, 
 \begin{align*}
 \mathbbmsl{E}[N_s]&\leq{n\choose 2}p\exp\left(-\lambda+\frac{\mathnormal{\Delta}}{2}\right)\\&\leq\exp\big(2\ln n+\ln p-\lambda+O(1)\big)\\
 &=\exp\left(2\ln n-\frac{2\ln n}{s+1}+\frac{2\ln\ln n}{(s-2)(s+1)}-2\left(1-\frac{1}{s+1}\right)\ln n-\frac{2\ln\ln n}{(s-2)(s+1)}-\omega(1)\right),
 \end{align*}
-which goes to $0$ as $n\to\infty$ and thus  Part (i)  of Lemma \ref{edge_in_clique} follows.
+which goes to $0$ as $n\to\infty$ and thus  Part (i)  of Lemma \ref{edge_in_clique} follows by Corollary \ref{First-Moment}.
 
 
 In order  to  prove  Part (ii)  of Lemma \ref{edge_in_clique}, note first that,  if $w_n\to-\infty$, then
-$$\mathbbmsl{E}[N_s]\geq{n\choose 2}p\exp\left(-\lambda\left(1+O\left(n^{-(s-2)}\ln n\right)\right)\right)\geq\exp\big(2\ln n+\ln p-\lambda+o(1)\big)\to\infty$$ as $n\to\infty$.
+$$\mathbbmsl{E}[N_s]\geq{n\choose 2}p\exp\left(-\lambda\left(1+O\left(n^{-(s-2)}\ln n\right)\right)\right)\geq\exp\big(2\ln n+\ln p-\lambda+o(1)\big)\to\infty$$ as $n\to\infty$, meaning that  $\mathbbmsl{E}[N_s]=o(\mathbbmsl{E}[N_s]^2)$.
 Below, we   apply   Theorem \ref{Janson} to   estimate $\mathbbmsl{P}[\mu(1,2)=\mu(3,4)=0]$ and $\mathbbmsl{P}[\mu(1,2)=\mu(2,3)=0]$.
 For each set $W\subseteq[\![n]\!]\setminus[\![4]\!]$ of size $s-2$, consider the  event $K'[W]$ saying that   $W$ is a clique in either $N_{\mathbbmsl{G}(n,p)}(\{1, 2\})$ or   $N_{\mathbbmsl{G}(n,p)}(\{3, 4\})$.   Let $\mu'$ counts the number of sets $W$ as above such that $K'[W]$ happens. We have
 \begin{equation}
 \mathbbmsl{P}\big[\mu(1,2)=\mu(3,4)=0\big]\leq\mathbbmsl{P}[\mu'=0].\label{mu-one}
 \end{equation}
 If $s=3$, then $\mathbbmsl{P}[\mu'=0]=(1-p^2)^{2(n-4)}$. For $s\geq 4$, easy  computations  show that
-$$\lambda'=\sum_{W'\in{[n]\setminus[\![4]\!]\choose s-2}}\mathbbmsl{P}\big[K'[W]\big]={n-4\choose s-2}p^{\frac{(s-2)(s+1)}{2}}\left(2-p^{2(s-2)}\right)$$   and
+$$\lambda'=\sum_{W'\in{[\![n]\!]\setminus[\![4]\!]\choose s-2}}\mathbbmsl{P}\big[K'[W]\big]={n-4\choose s-2}p^{\frac{(s-2)(s+1)}{2}}\left(2-p^{2(s-2)}\right)$$   and
 $$\mathnormal{\Delta}'=\mathop{\mathop{\sum_{W_1,W_2\in{[\![n]\!]\setminus[\![4]\!]\choose s-2}}}_{W_1\neq W_2}}_{W_1\cap W_2\neq\varnothing}\mathbbmsl{P}\big[K'[W_1]\cap K'[W_2]\big]$$ is equal to $$\sum_{\ell=1}^{s-3}{n-4\choose s-2}{s-2\choose\ell}{n-s-2\choose s-2-\ell}
 p^{(s-2)(s-3)-\frac{(\ell-1)\ell}{2}}2p^{2\ell}\left(2p^{2(s-2)-2\ell}\right)^2\big(1+O(p)\big).$$
-We have $\lambda'=2\lambda(1+O(\frac{1}{n}))$ and $\mathnormal{\Delta}'=8\mathnormal{\Delta}(1+O(q_s))$.
+We have $\lambda'=2\lambda(1+O(\tfrac{1}{n}))$ and $\mathnormal{\Delta}'=8\mathnormal{\Delta}(1+O(q_s))$.
 So, Theorem \ref{Janson} implies that
 \begin{align}
 \mathbbmsl{P}[\mu'=0]&\leq\exp\left(-\lambda'+\frac{\mathnormal{\Delta}'}{2}\right)\nonumber\\&=\exp\left(-2\lambda\left(1+O\left(\frac{1}{n}\right)\right)+4\mathnormal{\Delta}\big(1+O(q_s)\big)\right)\nonumber\\&=
@@ -536,7 +561,7 @@ For each  set $W\subseteq[\![n]\!]\setminus[\![3]\!]$ of size $s-2$, consider th
 \mathbbmsl{P}\big[\mu(1,2)=\mu(2,3)=0\big]\leq\mathbbmsl{P}[\mu''=0].\label{mu-two}
 \end{equation}
 If $s=3$, then $\mathbbmsl{P}[\mu''=0]=(1-p+p(1-p)^2)^{n-3}$. For $s\geq 4$, easy  calculations   show that
-$$\lambda''=\sum_{W'\in{[n]\setminus[\![3]\!]\choose s-2}}\mathbbmsl{P}\big[K''[W]\big]={n-3\choose s-2}p^{\frac{(s-2)(s+1)}{2}}\left(2-p^{s-2}\right)$$ and
+$$\lambda''=\sum_{W'\in{[\![n]\!]\setminus[\![3]\!]\choose s-2}}\mathbbmsl{P}\big[K''[W]\big]={n-3\choose s-2}p^{\frac{(s-2)(s+1)}{2}}\left(2-p^{s-2}\right)$$ and
 $$\mathnormal{\Delta}''=\mathop{\mathop{\sum_{W_1,W_2\in{[\![n]\!]\setminus[\![3]\!]\choose s-2}}}_{W_1\neq W_2}}_{W_1\cap W_2\neq\varnothing}\mathbbmsl{P}\big[K''[W_1]\cap K''[W_2]\big]$$ is equal to
 $$\sum_{\ell=1}^{s-3}{n-3\choose s-2}{s-2\choose\ell}{n-s-1\choose s-2-\ell}p^{(s-2)(s-3)-\frac{(\ell-1)\ell}{2}}p^{2(s-2)-\ell}8p^{\ell}p^{2(s-2)-2\ell}\big(1+O(p)\big).$$
 We have $\lambda''=2\lambda(1+o(\tfrac{1}{\sqrt{n}}))$ and $\mathnormal{\Delta}''=8\mathnormal{\Delta}(1+O(q_s))$.
@@ -545,7 +570,7 @@ Then, Theorem \ref{Janson} implies that
 \mathbbmsl{P}[\mu''=0]&\leq\exp\left(-\lambda''+\frac{\mathnormal{\Delta}''}{2}\right)\nonumber\\&=\exp\left(-2\lambda\left(1+O\left(\frac{1}{\sqrt{n}}\right)\right)+4\mathnormal{\Delta}\big(1+O(q_s)\big)\right)
 \nonumber\\&=\exp\left(-2\lambda\left(1+o\left(n^{-\frac{1}{s+1}}\ln n\right)\right)\right).\label{mu-two-from-above}
 \end{align}
-By combining the relations \eqref{expectation-mu}--\eqref{mu-two-from-above}, we derive that
+By combining the relations \eqref{expectation-mu}--\eqref{mu-two-from-above}, we derive  for each  $s\geq3$  that
 \begin{align*}
 \mathbbmsl{Var}[N_s]&=\mathbbmsl{E}[N_s^2]-\mathbbmsl{E}[N_s]^2\\&=\mathbbmsl{E}[N_s]+{n\choose 2}{n-2\choose 2}p^2\mathbbmsl{P}\big[\mu(1,2)=\mu(3,4)=0\big]\\&+
 n(n-1)(n-2)p^2\mathbbmsl{P}\big[\mu(1,2)=\mu(2,3)=0\big]-\left({n\choose 2}p\mathbbmsl{P}\big[\mu(1,2)=0\big]\right)^2\\&\leq
